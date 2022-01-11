@@ -12,6 +12,8 @@ import {GameModel} from "./schemas/game.schema.js";
 import {CardModel} from "./schemas/card.schema.js";
 import { setupCardsInitial } from "./helpers/initial.js";
 import { addRandomCards, findNotUsedCards, findPlayerByCardTitle, getGameState, onAddGame, onAddName, onConnection, passOutCards } from "./helpers/io.sim.js";
+import { ChatModel } from "./schemas/chat.schama.js";
+
 
 dotenv.config();
 
@@ -56,7 +58,7 @@ const io = new socketIO.Server(server,  { cors: {
 const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect(`${process.env.MONGO_URI}`)
+.connect("mongodb://localhost:27017/real-time-chat-app")
   .then(() => {
     console.log("Connected to DB Successfully");
   })
@@ -77,6 +79,25 @@ app.all("/api/*", function (req, res) {
 });
 
 
+
+app.post("/create-chat", function(req, res) {
+  const {sender, to, text} = req.body
+  const chat = new ChatModel({
+    sender,
+    to,
+    text
+  });
+  chat
+  .save()
+  .then((data) => {
+    res.json((data))
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(501);
+    res.json({errors: err})
+  })
+})
 server.listen(PORT, function () {
   console.log(`starting at localhost http://localhost:${PORT}`);
 });
