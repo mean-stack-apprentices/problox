@@ -90,7 +90,7 @@ app.get("/chats", function (req, res) {
     });
 });
 server.listen(PORT, function () {
-    console.log(`starting at localhost http://localhost:${PORT}`);
+    // console.log(`starting at localhost http://localhost:${PORT}`);
 });
 io.on('connection', function (socket) {
     socket.on('join', function (data) {
@@ -107,7 +107,6 @@ io.on('connection', function (socket) {
 });
 app.all("*", function (req, res) {
     const filePath = path.join(__dirname, '/dist/client/index.html');
-    console.log(filePath);
     res.sendFile(filePath);
 });
 //# sourceMappingURL=server.js.map

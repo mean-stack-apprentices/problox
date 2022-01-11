@@ -108,7 +108,7 @@ app.get("/chats", function(req, res) {
 })
 
 server.listen(PORT, function () {
-  console.log(`starting at localhost http://localhost:${PORT}`);
+  // console.log(`starting at localhost http://localhost:${PORT}`);
 });
 
 
@@ -130,6 +130,5 @@ socket.leave(data)
 
 app.all("*", function (req, res) {
   const filePath = path.join(__dirname, '/dist/client/index.html');
-  console.log(filePath);
   res.sendFile(filePath);
 });
