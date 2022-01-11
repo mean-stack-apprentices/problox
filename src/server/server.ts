@@ -98,6 +98,15 @@ app.post("/create-chat", function(req, res) {
     res.json({errors: err})
   })
 })
+app.get("/chats", function(req, res) {
+  ChatModel.find()
+  .then((data) => res.json({data}))
+  .catch((err) => {
+    res.status(501);
+    res.json({ errors: err });
+  });
+})
+
 server.listen(PORT, function () {
   console.log(`starting at localhost http://localhost:${PORT}`);
 });
