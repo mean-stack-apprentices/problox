@@ -94,9 +94,16 @@ server.listen(PORT, function () {
 });
 io.on('connection', function (socket) {
     console.log('a user connected');
-    socket.emit('message', 'work');
-    socket.on('disconnect', function () {
-        console.log('user disconnected');
+    socket.on('join', function (data) {
+        socket.join(data.room);
+        io.emit('new user joined', { user: data.user, message: 'joined.' });
+    });
+    socket.on('leave', function (data) {
+        io.emit('left room', { user: data.user, message: 'left room.' });
+        socket.leave(data);
+    });
+    socket.on('message', function (data) {
+        io.in(data.room).emit('new message', { user: data.user, message: data.essage });
     });
 });
 app.all("*", function (req, res) {
