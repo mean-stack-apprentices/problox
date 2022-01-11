@@ -6,12 +6,15 @@ import * as socketIO from "socket.io";
 import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
+import bcrypt from "bcrypt";
 import "./schemas/player.schema.js";
 import "./schemas/game.schema.js";
 import "./schemas/card.schema.js";
 import { setupCardsInitial } from "./helpers/initial.js";
 import "./helpers/io.sim.js";
+import { UserModel } from "./schemas/user.schema.js";
 dotenv.config();
+const saltRounds = 10;
 const __dirname = path.resolve();
 async function runner() {
     setupCardsInitial();
@@ -58,6 +61,28 @@ app.use(cors({
 app.use(express.json());
 app.get("/api/test", function (req, res) {
     res.json({ message: "Hello World!" });
+});
+app.post("/api/create-user", function (req, res) {
+    const { firstname, email, lastname, password } = req.body;
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        bcrypt.hash(password, salt, function (err, hash) {
+            const user = new UserModel({
+                firstname,
+                lastname,
+                email,
+                password: hash,
+            });
+            user
+                .save()
+                .then((data) => {
+                res.json({ data });
+            })
+                .catch((err) => {
+                res.status(501);
+                res.json({ errors: err });
+            });
+        });
+    });
 });
 app.all("/api/*", function (req, res) {
     res.sendStatus(404);
