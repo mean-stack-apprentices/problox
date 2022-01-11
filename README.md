@@ -1,4 +1,7 @@
-# full-stack
+# Name
+problox
+# Description
+Ecommerce site for gaming
 
 
 # Auth
@@ -14,7 +17,14 @@
     "@types/jsonwebtoken": "^8.5.5",
 
 ## front end
-create actions/effect/service for login
-html
+    angular
 ### api
-    {withCreditials: true}
+    node express sockets
+    
+    
+# Getting Started
+### server 
+    npm run dev-server
+### client 
+    cd src/client
+    ng serve
