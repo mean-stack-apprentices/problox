@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/services/user.service';
-// import { signIn } from 'src/app/store/actions/user/sign-in.action';
+import { loginUser } from 'src/app/store/actions/user/user.actions';
 // import { User } from '../../../../../shared/models/user.model';
 
 @Component({
@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     console.log(this.signInForm.value)
-    //this.userService.signIn(this.signInForm.value).subscribe();
-    //this.store.dispatch(signIn(this.signInForm.value));
+    // Without NGRX
+    //this.userService.login(this.signInForm.value).subscribe();
+    // With NGRX
+    this.store.dispatch(loginUser(this.signInForm.value));
     //this.router.navigate(['home'])
   }
 }
