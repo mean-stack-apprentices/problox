@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/services/user.service';
 import { loginUser } from 'src/app/store/actions/user/user.actions';
-// import { User } from '../../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-login',
