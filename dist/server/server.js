@@ -93,7 +93,6 @@ server.listen(PORT, function () {
     console.log(`starting at localhost http://localhost:${PORT}`);
 });
 io.on('connection', function (socket) {
-    console.log('a user connected');
     socket.on('join', function (data) {
         socket.join(data.room);
         io.emit('new user joined', { user: data.user, message: 'joined.' });
@@ -103,7 +102,7 @@ io.on('connection', function (socket) {
         socket.leave(data);
     });
     socket.on('message', function (data) {
-        io.in(data.room).emit('new message', { user: data.user, message: data.essage });
+        io.in(data.room).emit('new message', { user: data.user, message: data.message });
     });
 });
 app.all("*", function (req, res) {
