@@ -7,11 +7,11 @@ import { UserService } from 'src/app/services/user.service';
 // import { User } from '../../../../../shared/models/user.model';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class LoginComponent implements OnInit {
   signInForm: FormGroup
   constructor(
     private userService: UserService,
@@ -35,3 +35,4 @@ export class SignInComponent implements OnInit {
     //this.router.navigate(['home'])
   }
 }
+
