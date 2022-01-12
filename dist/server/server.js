@@ -48,7 +48,7 @@ const io = new socketIO.Server(server, { cors: {
     } });
 const PORT = process.env.PORT || 3000;
 mongoose
-    .connect(`${process.env.MONGO_URI}`)
+    .connect("mongodb://localhost:27017/real-time-chat-app")
     .then(() => {
     console.log("Connected to DB Successfully");
 })
@@ -63,12 +63,12 @@ app.get("/api/test", function (req, res) {
     res.json({ message: "Hello World!" });
 });
 app.post("/api/create-user", function (req, res) {
-    const { firstname, email, lastname, password } = req.body;
+    const { name, email, username, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
             const user = new UserModel({
-                firstname,
-                lastname,
+                name,
+                username,
                 email,
                 password: hash,
             });
@@ -87,19 +87,50 @@ app.post("/api/create-user", function (req, res) {
 app.all("/api/*", function (req, res) {
     res.sendStatus(404);
 });
+app.post("/create-chat", function (req, res) {
+    const { sender, to, text } = req.body;
+    const chat = new ChatModel({
+        sender,
+        to,
+        text
+    });
+    chat
+        .save()
+        .then((data) => {
+        res.json((data));
+    })
+        .catch((err) => {
+        console.log(err);
+        res.status(501);
+        res.json({ errors: err });
+    });
+});
+app.get("/chats", function (req, res) {
+    ChatModel.find()
+        .then((data) => res.json({ data }))
+        .catch((err) => {
+        res.status(501);
+        res.json({ errors: err });
+    });
+});
 server.listen(PORT, function () {
-    console.log(`starting at localhost http://localhost:${PORT}`);
+    // console.log(`starting at localhost http://localhost:${PORT}`);
 });
 io.on('connection', function (socket) {
-    console.log('a user connected');
-    socket.emit('message', 'work');
-    socket.on('disconnect', function () {
-        console.log('user disconnected');
+    socket.on('join', function (data) {
+        socket.join(data.room);
+        io.emit('new user joined', { user: data.user, message: 'joined.' });
+    });
+    socket.on('leave', function (data) {
+        io.emit('left room', { user: data.user, message: 'left room.' });
+        socket.leave(data);
+    });
+    socket.on('message', function (data) {
+        io.in(data.room).emit('new message', { user: data.user, message: data.message });
     });
 });
 app.all("*", function (req, res) {
     const filePath = path.join(__dirname, '/dist/client/index.html');
-    console.log(filePath);
     res.sendFile(filePath);
 });
 //# sourceMappingURL=server.js.map
