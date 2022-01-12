@@ -49,7 +49,7 @@ const io = new socketIO.Server(server, { cors: {
     } });
 const PORT = process.env.PORT || 3000;
 mongoose
-    .connect("mongodb://localhost:27017/real-time-chat-app")
+    .connect(`${process.env.MONGO_URL}`)
     .then(() => {
     console.log("Connected to DB Successfully");
 })
