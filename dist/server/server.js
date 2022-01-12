@@ -8,40 +8,12 @@ import dotenv from "dotenv";
 import path from 'path';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import "./schemas/player.schema.js";
-import "./schemas/game.schema.js";
-import "./schemas/card.schema.js";
-import { setupCardsInitial } from "./helpers/initial.js";
-import "./helpers/io.sim.js";
 import { UserModel } from "./schemas/user.schema.js";
 import { ChatModel } from "./schemas/chat.schama.js";
 dotenv.config();
 const saltRounds = 10;
 const __dirname = path.resolve();
 const access_secret = process.env.ACCESS_SECRET;
-async function runner() {
-    setupCardsInitial();
-    // await onConnection('1');
-    // await onAddGame('123');
-    // await onAddName('1', 'test', '123');
-    // await onConnection('2');
-    // await onConnection('3');
-    // await onAddName('3', 'test3', '123');
-    // await onAddName('2', 'test2', '123');
-    // await addRandomCards('123');
-    // passOutCards('123');
-    // const state = await getGameState('123');
-    // const werewolves = await findPlayerByCardTitle('Werewolf');
-    // const unusedCards = await findNotUsedCards('123');
-    // console.log(JSON.stringify(unusedCards, null, 4));
-    // setTimeout(() => {
-    //   mongoose.connection.db.dropDatabase(function(err, result) {
-    //     console.log(err, result); console.log('DB dropped');
-    //   });
-    // } , 20000);
-}
-runner();
-dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const clientPath = path.join(__dirname, '/dist/client');
@@ -74,6 +46,7 @@ app.post("/api/create-user", function (req, res) {
                 username,
                 email,
                 password: hash,
+                role: 'basic'
             });
             user
                 .save()
