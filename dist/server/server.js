@@ -7,6 +7,7 @@ import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import "./schemas/player.schema.js";
 import "./schemas/game.schema.js";
 import "./schemas/card.schema.js";
@@ -17,6 +18,7 @@ import { ChatModel } from "./schemas/chat.schama.js";
 dotenv.config();
 const saltRounds = 10;
 const __dirname = path.resolve();
+const access_secret = process.env.ACCESS_SECRET;
 async function runner() {
     setupCardsInitial();
     // await onConnection('1');
@@ -82,6 +84,24 @@ app.post("/api/create-user", function (req, res) {
                 res.status(501);
                 res.json({ errors: err });
             });
+        });
+    });
+});
+app.post("/api/login", function (req, res) {
+    const { username, password } = req.body;
+    UserModel.findOne({ username }).then(user => {
+        bcrypt.compare(password, `${user?.password}`, function (err, result) {
+            if (result) {
+                const accessToken = jwt.sign({ user }, access_secret);
+                res.cookie('jwt', accessToken, {
+                    httpOnly: true,
+                    maxAge: 3600 * 1000,
+                });
+                res.json({ data: user });
+            }
+            else {
+                res.sendStatus(502);
+            }
         });
     });
 });
