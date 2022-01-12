@@ -14,11 +14,17 @@ import {CardModel} from "./schemas/card.schema.js";
 import { setupCardsInitial } from "./helpers/initial.js";
 import { addRandomCards, findNotUsedCards, findPlayerByCardTitle, getGameState, onAddGame, onAddName, onConnection, passOutCards } from "./helpers/io.sim.js";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { UserModel } from "./schemas/user.schema.js";
 =======
 import { ChatModel } from "./schemas/chat.schama.js";
 
 >>>>>>> 804d38e9000d53d59a43dc8d0eb67d1a9c48437a
+=======
+import { ChatModel } from "./schemas/chat.schama.js";
+import { UserModel } from "./schemas/user.schema.js";
+
+>>>>>>> 9f1aa80342e75995b6a391cd9126a6e4babacf58
 
 dotenv.config();
 
