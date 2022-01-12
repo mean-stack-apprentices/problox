@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     // Without NGRX
     //this.userService.login(this.signInForm.value).subscribe();
     // With NGRX
-    this.store.dispatch(loginUser(this.signInForm.value));
+    this.store.dispatch(loginUser({data: this.signInForm.value}));
     //this.router.navigate(['home'])
   }
 }
