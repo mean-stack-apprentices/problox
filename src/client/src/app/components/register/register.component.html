@@ -1,0 +1,29 @@
+<section class="register">
+    <div class="header">
+      <h3>Sign Up</h3>
+      
+    </div>
+  
+    <div class="body">
+      <form [formGroup]="addUser">
+        <div class="user_name">
+          <input type="text" placeholder="Name" formControlName="name" />
+          <input type="text" placeholder="UserName" formControlName="username" />
+        </div>
+  
+        <div class="email_password">
+          <input type="text" formControlName="email" placeholder="email" />
+          
+          <input type="text" formControlName="password" placeholder="password" />
+        </div>
+  
+       
+       <button type="submit" class="submit-button" (click)="postUser(selectedUser)" [disabled]="addUser.invalid">
+        Sign Up
+      </button> 
+  
+            
+      </form>
+    </div>
+  </section>
+  

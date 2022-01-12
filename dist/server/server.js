@@ -13,6 +13,7 @@ import "./schemas/card.schema.js";
 import { setupCardsInitial } from "./helpers/initial.js";
 import "./helpers/io.sim.js";
 import { UserModel } from "./schemas/user.schema.js";
+import { ChatModel } from "./schemas/chat.schama.js";
 dotenv.config();
 const saltRounds = 10;
 const __dirname = path.resolve();
@@ -63,7 +64,7 @@ app.get("/api/test", function (req, res) {
     res.json({ message: "Hello World!" });
 });
 app.post("/api/create-user", function (req, res) {
-    const { name, email, username, password } = req.body;
+    const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
             const user = new UserModel({
