@@ -56,7 +56,8 @@ const io = new socketIO.Server(server,  { cors: {
 const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect(`${process.env.MONGO_URI}`)
+  //.connect(`${process.env.MONGO_URI}`)
+  .connect('mongodb://localhost:27017/probloxDB')
   .then(() => {
     console.log("Connected to DB Successfully");
   })
