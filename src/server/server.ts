@@ -92,6 +92,7 @@ app.post("/api/create-user", function (req, res) {
         username,
         email,
         password: hash,
+        role: 'basic'
       });
 
       user
