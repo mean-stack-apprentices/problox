@@ -18,6 +18,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
 import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -29,7 +31,9 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     PageUsersComponent,
     PageLoginComponent,
     PageJoinGameComponent,
-    PageCreateGameComponent
+    PageCreateGameComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
