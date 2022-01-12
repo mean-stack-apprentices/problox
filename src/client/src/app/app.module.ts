@@ -20,6 +20,7 @@ import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.com
 import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageGamesComponent } from './pages/page-games/page-games.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -33,7 +34,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     PageJoinGameComponent,
     PageCreateGameComponent,
     LoginComponent,
-    PageGamesComponent
+    PageGamesComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
