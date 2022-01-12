@@ -1,5 +1,5 @@
 # Name
-problox
+Problox
 # Description
 Ecommerce site for gaming
 
