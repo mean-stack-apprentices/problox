@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ContactPageComponent } from './components/contact-page/contact-page.component'
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'games', component: PageGamesComponent},
   {path: 'join-game', component: PageJoinGameComponent},
-  {path: 'create-game', component: PageCreateGameComponent},
+  { path: 'create-game', component: PageCreateGameComponent },
+  {path:'contact-page', component:ContactPageComponent},
   {path: '**', redirectTo: '/join-game'}
 ];
 
