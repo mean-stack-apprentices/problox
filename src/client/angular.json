@@ -128,7 +128,7 @@
   },
   "defaultProject": "client",
   "cli": {
-    "analytics": false,
+    "analytics": "657dd97b-d25f-4676-81b8-97fff8fc1a31",
     "defaultCollection": "@ngrx/schematics"
   }
 }

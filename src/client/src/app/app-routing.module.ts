@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
 import { PageGamesComponent } from './pages/page-games/page-games.component';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
+import { CreateMerchComponent } from './components/create-merch/create-merch.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'join-game', component: PageJoinGameComponent},
   { path: 'create-game', component: PageCreateGameComponent },
   {path:'contact-page', component:ContactPageComponent},
+  {path: 'create-merch', component: CreateMerchComponent},
   {path: '**', redirectTo: '/join-game'}
 ];
 
