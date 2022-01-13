@@ -32,7 +32,7 @@ const io = new socketIO.Server(server,  { cors: {
 const PORT = process.env.PORT || 3000;
 
 mongoose
-.connect("mongodb://localhost:27017/real-time-chat-app")
+.connect(`${process.env.MONGO_URL}`)
   .then(() => {
     console.log("Connected to DB Successfully");
   })
@@ -74,6 +74,7 @@ app.post("/api/create-user", function (req, res) {
     });
   });
 });
+
 
 app.post("/api/login", function(req, res) {
   const {username, password} = req.body;
@@ -124,12 +125,9 @@ app.post("/api/create-game", function(req, res){
   })
 })
 
-app.all("/api/*", function (req, res) {
-  res.sendStatus(404);
-});
 
 
-app.post("/create-chat", function(req, res) {
+app.post("/api/create-message", function(req, res) {
   const {sender, to, text} = req.body
   const chat = new ChatModel({
     sender,
@@ -147,7 +145,7 @@ app.post("/create-chat", function(req, res) {
     res.json({errors: err})
   })
 })
-app.get("/chats", function(req, res) {
+app.get("/api/chats", function(req, res) {
   ChatModel.find()
   .then((data) => res.json({data}))
   .catch((err) => {
@@ -155,6 +153,11 @@ app.get("/chats", function(req, res) {
     res.json({ errors: err });
   });
 })
+app.all("/api/*", function (req, res) {
+  res.sendStatus(404);
+});
+
+
 
 server.listen(PORT, function () {
   // console.log(`starting at localhost http://localhost:${PORT}`);

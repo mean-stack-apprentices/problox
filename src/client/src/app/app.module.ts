@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PageGamesComponent } from './pages/page-games/page-games.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreateMerchComponent } from './components/create-merch/create-merch.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
@@ -38,6 +39,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     LoginComponent,
     RegisterComponent,
     CreateMerchComponent,
+    ChatComponent,
     ContactPageComponent,
     PageGamesComponent,
   ],

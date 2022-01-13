@@ -1,0 +1,49 @@
+
+
+  <div class="container">
+    <h2>real-time chat</h2>
+    <hr />
+    <div class="form-group">
+   <h3>Username</h3>
+      <input
+        type="text"
+        [(ngModel)]="user"
+        class="form-control"
+        id="username"
+        placeholder="Enter username"
+      />
+      <button type="button" class=" btn-primary" (click)="join()">
+        Join
+      </button>
+      <button type="button" class="btn-default" (click)="leave()">
+        Leave
+      </button>
+    </div>
+
+
+
+
+    <div class="row">
+      {{ messageArray }}
+      <div *ngFor="let item of messageArray">
+        <span
+          ><strong>{{ item.user }} : </strong> {{ item.message }}</span
+        >
+      </div>
+    </div>
+
+    <div class="row3">
+      <input type="text" placeholder="message" class="form-control" [(ngModel)]="messageText" />
+
+      <div class="send">
+        <button
+          type="button"
+          class="btn btn-success pull-right"
+          (click)="sendMessage()"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+

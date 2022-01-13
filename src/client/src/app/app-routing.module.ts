@@ -1,6 +1,7 @@
 import { ContactPageComponent } from './components/contact-page/contact-page.component'
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './components/chat/chat.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'games', component: PageGamesComponent},
   {path: 'join-game', component: PageJoinGameComponent},
-  { path: 'create-game', component: PageCreateGameComponent },
+  {path: 'create-game', component: PageCreateGameComponent},
+  {path: 'create-message', component:ChatComponent},
   {path:'contact-page', component:ContactPageComponent},
   {path: 'create-merch', component: CreateMerchComponent},
   {path: '**', redirectTo: '/join-game'}
@@ -21,6 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
