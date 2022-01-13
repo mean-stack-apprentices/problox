@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-merch',
@@ -6,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-merch.component.scss']
 })
 export class CreateMerchComponent implements OnInit {
+  createMerchForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) 
+  { 
+    this.createMerchForm = this.fb.group({
+      name: ['', Validators.required],
+      price: [0, Validators.required],
+      description: ['', Validators.required],
+      imgUrl: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
   }
