@@ -37,11 +37,8 @@ export class ContactPageComponent implements OnInit {
     this.userService.sendEmail(user).subscribe(
       data => {
         let res:any = data;
-        console.log (`${user.name} is successfully register and mail has been sent and the message id is ${res.messageId}`
-        );
       },
       err => {
-        console.log(err);
         this.loading = false;
         this.buttonText = "Submit";
       },() => {
