@@ -7,15 +7,10 @@ import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
 import bcrypt from "bcrypt";
-
-import {PlayerModel} from "./schemas/player.schema.js";
-import {GameModel} from "./schemas/game.schema.js";
-import {CardModel} from "./schemas/card.schema.js";
-import { setupCardsInitial } from "./helpers/initial.js";
-import { addRandomCards, findNotUsedCards, findPlayerByCardTitle, getGameState, onAddGame, onAddName, onConnection, passOutCards } from "./helpers/io.sim.js";
-
+import jwt from "jsonwebtoken";
 import { UserModel } from "./schemas/user.schema.js";
 import { ChatModel } from "./schemas/chat.schama.js";
+import { GameModel } from "./schemas/game.schema.js";
 
 dotenv.config();
 
@@ -23,33 +18,8 @@ const saltRounds = 10;
 
 const __dirname = path.resolve();
 
-async function runner() {
-  setupCardsInitial();
-  // await onConnection('1');
-  // await onAddGame('123');
-  // await onAddName('1', 'test', '123');
-  // await onConnection('2');
+const access_secret = process.env.ACCESS_SECRET as string;
 
-  // await onConnection('3');
-  // await onAddName('3', 'test3', '123');
-  // await onAddName('2', 'test2', '123');
-  // await addRandomCards('123');
-  // passOutCards('123');
-  // const state = await getGameState('123');
-  // const werewolves = await findPlayerByCardTitle('Werewolf');
-  // const unusedCards = await findNotUsedCards('123');
-  // console.log(JSON.stringify(unusedCards, null, 4));
-  
-  // setTimeout(() => {
-  //   mongoose.connection.db.dropDatabase(function(err, result) {
-  //     console.log(err, result); console.log('DB dropped');
-  //   });
-  // } , 20000);
-}
-
-runner();
-
-dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const clientPath = path.join(__dirname, '/dist/client');
@@ -89,6 +59,7 @@ app.post("/api/create-user", function (req, res) {
         username,
         email,
         password: hash,
+        role: 'basic'
       });
 
       user
@@ -103,6 +74,59 @@ app.post("/api/create-user", function (req, res) {
     });
   });
 });
+
+
+app.post("/api/login", function(req, res) {
+  const {username, password} = req.body;
+
+  UserModel.findOne({username}).then(user => {
+    bcrypt.compare(password, `${user?.password}`, function(err, result) {
+      if (result) {
+        const accessToken = jwt.sign({user}, access_secret)
+        res.cookie('jwt', accessToken, {
+          httpOnly: true,
+          maxAge: 3600 * 1000,
+        })
+        res.json({data: user});
+      } else {
+        res.sendStatus(502);
+      }
+    })
+  })
+});
+
+app.get("/api/games", function(req,res){
+  GameModel.find({}, "-_id")
+  .then(data => {
+    res.json({data})
+  })
+  .catch(err => {
+    res.status(501).json({Error: err})
+  })
+})
+
+app.post("/api/create-game", function(req, res){
+  const {name, description, price, imgUrl, categories} = req.body;
+
+  const game = new GameModel({
+    name, 
+    description, 
+    price,
+    imgUrl,
+    categories
+  });
+
+  game.save()
+  .then(data => {
+    res.json({data});
+    console.log(data)
+  }).catch(err => {
+    res.status(500).json({message: "Something went wrong"})
+  })
+})
+
+
+
 app.post("/api/create-message", function(req, res) {
   const {sender, to, text} = req.body
   const chat = new ChatModel({

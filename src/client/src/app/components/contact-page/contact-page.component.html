@@ -1,0 +1,62 @@
+<section>
+    <h1 class="h1-responsive font-weight-bold text-center my-4">contact us</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <form style="width:50%; margin:auto">
+            <div>
+         <div style="width: 100% "class="row">
+            <input placeholder="Email" [formControl]="emailFormControl">
+            <div *ngIf="emailFormControl.invalid && (emailFormControl.touched)">
+                <p>
+                    please  enter a valid email address</p>
+               </div>
+
+            </div>
+            <br>
+            <div style="width:100%" class="row">
+                <input placeholder="name" [formControl]="nameFormControl"/>
+                <div *ngIf="nameFormControl.hasError('minlength')"></div>
+                <p>name must be at least 4 characters long.</p>
+
+                </div><br>
+
+                <div style="width: 100%" class="row">
+                    <input placeholder="subject" [formControl]="subjectFormControl">
+                    <div *ngIf="subjectFormControl.hasError('minlength')"></div>
+
+                    </div><br>
+
+                    <div style="width: 100%"class="row">
+                        <textarea placeholder="textarea" rows="4" [formControl]="textareaFormControl"></textarea>
+                      </div><br>
+                      <div>
+                      </div>
+                      </div>
+                      <button
+                 [disabled]="emailFormControl.invalid || nameFormControl.invalid || loading"
+                 color="primary"
+                 (click)="register()">
+                 {{buttonText}}
+               </button>
+                     </form>
+
+                     </div>
+                     <div class="col-md-3 text-center">
+                         <ul class="list-unstyled mb-0">
+                    <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                        <p>San Francisco, CA 94135, USA</p>
+                    </li>
+
+                    <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>+ 01 245 856 79</p>
+                    </li>
+
+                    <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>ProBlox@gmail.com</p></li>
+                         </ul>
+                         
+
+                     </div>
+        </div>
+    
+</section>

@@ -37,4 +37,8 @@ export class UserService {
   selectUser(id: string) {
     this.selectedUserId = id;
   }
+  sendEmail(data:any){
+    return this.api.post('sendEmail', data)
+    }
 }
+
