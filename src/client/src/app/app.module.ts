@@ -19,6 +19,7 @@ import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
 import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
 import { LoginComponent } from './components/login/login.component';
+import { PageGamesComponent } from './pages/page-games/page-games.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
@@ -36,6 +37,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     LoginComponent,
     RegisterComponent,
     ContactPageComponent
+    PageGamesComponent,
   ],
   imports: [
     BrowserModule,

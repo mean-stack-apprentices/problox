@@ -1,16 +1,24 @@
 import mongoose from 'mongoose';
+import type { Game } from '../../shared/models/game.model';
 const {Schema, model} = mongoose;
 
-interface Game {
-    pin: string;
-    players: mongoose.Types.ObjectId[];
-    cards: mongoose.Types.ObjectId[];
-}
 
 const gameSchema = new Schema<Game>({
-    pin: String,
-    cards: [{ type: mongoose.Types.ObjectId, ref: 'Card' }],
-    players: [{ type: mongoose.Types.ObjectId, ref: 'Player' }],
+    name: {type: String, required: true, min: 3, max: 25},
+    description : {type: String, required: true, max: 50},
+    price: {
+        type: Number, 
+        required: true, 
+        min: 0,
+        default: 0.00
+    },
+    imgUrl: {type: String},
+    categories: {
+        type: String,
+        required: true, 
+        enum: ["free", "paid"],
+        default: "free"
+    }
 });
 
 export const GameModel = model('Game', gameSchema);
