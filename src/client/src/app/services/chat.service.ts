@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import io from 'socket.io-client'
 import { Observable, observable } from 'rxjs';
-
+import { map } from 'rxjs/operators';
+import { Chat } from '../../../../shared/models/chat.model'
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +41,7 @@ export class ChatService {
       return observable
   }
 
-sendMessage(data:{user:String; message:String}) {
+sendMessage(data:{user:string; message:string, room:string}) {
   this.socket.emit('message', data);
 }
 newMessageRecevied() {
@@ -53,5 +54,8 @@ newMessageRecevied() {
     return () => {this.socket.disconnect()}
   });
   return observable
+}
+createMessage(chat: Chat) {
+  return this.api.post<{data: Chat}>('create-message', chat).pipe(map(res => res.data));
 }
 }
