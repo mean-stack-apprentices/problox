@@ -7,7 +7,6 @@ const {Schema, model} = mongoose
 
 const chatSchema = new Schema<Chat>({
 sender: {type: String, required: true},
-to: {type: String},
 text: {type: String, required: true},
  
 })
