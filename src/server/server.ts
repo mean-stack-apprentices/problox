@@ -94,6 +94,16 @@ app.post("/api/login", function(req, res) {
   })
 });
 
+app.get("/api/games", function(req,res){
+  GameModel.find({}, "-_id")
+  .then(data => {
+    res.json({data})
+  })
+  .catch(err => {
+    res.status(501).json({Error: err})
+  })
+})
+
 app.post("/api/create-game", function(req, res){
   const {name, description, price, imgUrl, categories} = req.body;
 
