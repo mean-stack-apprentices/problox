@@ -10,6 +10,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { UserModel } from "./schemas/user.schema.js";
 import { ChatModel } from "./schemas/chat.schama.js";
+import { GameModel } from "./schemas/game.schema.js";
 
 dotenv.config();
 
@@ -92,6 +93,26 @@ app.post("/api/login", function(req, res) {
     })
   })
 });
+
+app.post("/api/create-game", function(req, res){
+  const {name, description, price, imgUrl, categories} = req.body;
+
+  const game = new GameModel({
+    name, 
+    description, 
+    price,
+    imgUrl,
+    categories
+  });
+
+  game.save()
+  .then(data => {
+    res.json({data});
+    console.log(data)
+  }).catch(err => {
+    res.status(500).json({message: "Something went wrong"})
+  })
+})
 
 app.all("/api/*", function (req, res) {
   res.sendStatus(404);
