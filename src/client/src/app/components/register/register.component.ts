@@ -19,6 +19,7 @@ import { User } from '../../../../../shared/models/user.model';
 export class RegisterComponent implements OnInit {
   addUser: FormGroup;
   selectedUser: User | null = null;
+  validUsername: boolean = false;
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
@@ -50,10 +51,19 @@ export class RegisterComponent implements OnInit {
 
   checkValidUsername() {
     let username = this.addUser.controls.username.value;
-    this.userService.validUsername(username).subscribe();
+    this.userService.validUsername(username).subscribe((payload) => {
+      this.validUsername = payload.validUsername;
+    });
   }
 
   postUser(selectedUser: User | null) {
+    if(!this.validUsername){
+      alert(
+        "The username you have selected is already chosen please again."
+      )
+      return
+    }
+    
     !selectedUser
       ? this.store.dispatch(createUser({ data: this.addUser.value }))
       : this.store.dispatch(
