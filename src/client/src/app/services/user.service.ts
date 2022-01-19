@@ -40,5 +40,9 @@ export class UserService {
   sendEmail(data:any){
     return this.api.post('sendEmail', data)
     }
+
+  validUsername(username: string) {
+    return this.api.post<{validUsername:  boolean}>('vaid-username', {username})
+  }
 }
 
