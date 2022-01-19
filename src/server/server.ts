@@ -6,8 +6,7 @@ import * as socketIO from "socket.io";
 import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
-import { ChatModel } from "./schemas/chat.schama.js";
-import { GameModel } from "./schemas/game.schema.js";
+
 
 dotenv.config();
 
@@ -44,63 +43,6 @@ app.get("/api/test", function (req, res) {
 
 
 
-app.get("/api/games", function(req,res){
-  GameModel.find({}, "-_id")
-  .then(data => {
-    res.json({data})
-  })
-  .catch(err => {
-    res.status(501).json({Error: err})
-  })
-})
-
-app.post("/api/create-game", function(req, res){
-  const {name, description, price, imgUrl, categories} = req.body;
-
-  const game = new GameModel({
-    name, 
-    description, 
-    price,
-    imgUrl,
-    categories
-  });
-
-  game.save()
-  .then(data => {
-    res.json({data});
-  }).catch(err => {
-    res.status(500).json({message: "Something went wrong"})
-  })
-})
-
-
-
-app.post("/api/create-message", function(req, res) {
-  const {sender, to, text} = req.body
-  const chat = new ChatModel({
-    sender,
-    to,
-    text
-  });
-  chat
-  .save()
-  .then((data) => {
-    res.json((data))
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(501);
-    res.json({errors: err})
-  })
-})
-app.get("/api/chats", function(req, res) {
-  ChatModel.find()
-  .then((data) => res.json({data}))
-  .catch((err) => {
-    res.status(501);
-    res.json({ errors: err });
-  });
-})
 app.all("/api/*", function (req, res) {
   res.sendStatus(404);
 });
