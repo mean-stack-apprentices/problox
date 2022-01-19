@@ -152,6 +152,16 @@ app.get("/api/chats", function(req, res) {
     res.json({ errors: err });
   });
 })
+app.post("vaid-username", async function(req, res){
+  const {username} = req.body;
+  let user = await UserModel.find({username}).lean();
+  if (user) {
+    res.json({validUsername: false});
+  } else {
+    res.json({validUsername: true});
+  }
+})
+
 app.all("/api/*", function (req, res) {
   res.sendStatus(404);
 });
