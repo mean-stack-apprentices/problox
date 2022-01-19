@@ -119,7 +119,6 @@ app.post("/api/create-game", function(req, res){
   game.save()
   .then(data => {
     res.json({data});
-    console.log(data)
   }).catch(err => {
     res.status(500).json({message: "Something went wrong"})
   })
