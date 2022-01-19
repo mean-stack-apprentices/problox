@@ -1,5 +1,11 @@
-"use strict";
-app.post("/api/create-user", function (req, res) {
+import express from "express";
+import { UserModel } from '../schemas/user.schema';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+const router = express.Router();
+const saltRounds = 10;
+const access_secret = process.env.ACCESS_SECRET;
+router.post("/api/create-user", function (req, res) {
     const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
@@ -22,7 +28,7 @@ app.post("/api/create-user", function (req, res) {
         });
     });
 });
-app.post("/api/login", function (req, res) {
+router.post("/api/login", function (req, res) {
     const { username, password } = req.body;
     UserModel.findOne({ username }).then(user => {
         bcrypt.compare(password, `${user?.password}`, function (err, result) {
