@@ -100,15 +100,11 @@ app.post("/api/create-game", function (req, res) {
     game.save()
         .then(data => {
         res.json({ data });
-        console.log(data);
     }).catch(err => {
         res.status(500).json({ message: "Something went wrong" });
     });
 });
-app.all("/api/*", function (req, res) {
-    res.sendStatus(404);
-});
-app.post("/create-chat", function (req, res) {
+app.post("/api/create-message", function (req, res) {
     const { sender, to, text } = req.body;
     const chat = new ChatModel({
         sender,
@@ -121,18 +117,20 @@ app.post("/create-chat", function (req, res) {
         res.json((data));
     })
         .catch((err) => {
-        console.log(err);
         res.status(501);
         res.json({ errors: err });
     });
 });
-app.get("/chats", function (req, res) {
+app.get("/api/chats", function (req, res) {
     ChatModel.find()
         .then((data) => res.json({ data }))
         .catch((err) => {
         res.status(501);
         res.json({ errors: err });
     });
+});
+app.all("/api/*", function (req, res) {
+    res.sendStatus(404);
 });
 server.listen(PORT, function () {
     // console.log(`starting at localhost http://localhost:${PORT}`);
