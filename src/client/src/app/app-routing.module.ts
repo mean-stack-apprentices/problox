@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'create-message', component:ChatComponent},
   {path:'contact-page', component:ContactPageComponent},
   {path: 'create-merch', component: CreateMerchComponent},
-  {path: '**', redirectTo: '/join-game'}
+  {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({
