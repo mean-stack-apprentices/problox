@@ -52,3 +52,5 @@ router.post("/api/create-user", function (req, res) {
       })
     })
   });
+
+module.exports = router;
