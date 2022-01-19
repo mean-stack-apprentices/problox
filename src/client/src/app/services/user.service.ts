@@ -42,7 +42,7 @@ export class UserService {
     }
 
   validUsername(username: string) {
-    return this.api.post<{validUsername: boolean}>('vaid-username', {username})
+    return this.api.post<{validUsername: boolean}>('valid-username', {username})
   }
 }
 
