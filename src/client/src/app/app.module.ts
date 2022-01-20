@@ -20,9 +20,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateMerchComponent } from './components/create-merch/create-merch.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
-import { NavbarComponent } from './styles/navbar/navbar.component';
-import * as fromGame from './store/reducers/game/game.reducer';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { GameEffects } from './store/effects/game/game.effects';
+import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -51,7 +51,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forRoot([UserEffects, GameEffects]),
     SocketIoModule.forRoot(config),
-    StoreModule.forFeature(fromGame.gameFeatureKey, fromGame.reducer),
+    StoreModule.forFeature(gameFeatureKey, reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
