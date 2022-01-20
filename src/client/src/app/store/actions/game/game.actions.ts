@@ -7,7 +7,7 @@ export const loadGames = createAction(
 
 export const loadGamesSuccess = createAction(
   '[Game] Load Games Success',
-  props<{ data: any }>()
+  props<{ data: Game[] }>()
 );
 
 export const loadGamesFailure = createAction(
