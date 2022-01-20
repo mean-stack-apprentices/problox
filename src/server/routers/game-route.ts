@@ -1,8 +1,8 @@
 import express from "express";
-import { GameModel } from '../schemas/game.schema'
-const router = express.Router();
+import { GameModel } from '../schemas/game.schema.js'
+export const gameRouter = express.Router();
 
-router.get("/api/games", function(req,res){
+gameRouter.get("/games", function(req,res){
     GameModel.find({}, "-_id")
     .then(data => {
       res.json({data})
@@ -12,7 +12,7 @@ router.get("/api/games", function(req,res){
     })
   })
   
-  router.post("/api/create-game", function(req, res){
+  gameRouter.post("/create-game", function(req, res){
     const {name, description, price, imgUrl, categories} = req.body;
   
     const game = new GameModel({
@@ -30,4 +30,3 @@ router.get("/api/games", function(req,res){
       res.status(500).json({message: "Something went wrong"})
     })
   })
-  module.exports = router;
