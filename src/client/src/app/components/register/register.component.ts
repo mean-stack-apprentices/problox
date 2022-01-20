@@ -2,6 +2,8 @@ import { Component,  OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { debounceTime } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 import { AppState } from 'src/app/store';
 import {
   createUser,
@@ -17,11 +19,12 @@ import { User } from '../../../../../shared/models/user.model';
 export class RegisterComponent implements OnInit {
   addUser: FormGroup;
   selectedUser: User | null = null;
+  validUsername: boolean = false;
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
     private router: Router,
-       
+    private userService: UserService,
   ) {
     this.addUser = this.fb.group({
       name: ['', Validators.required],
@@ -40,9 +43,27 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addUser.controls.username.valueChanges.pipe(debounceTime(700)).subscribe(() => {
+      this.checkValidUsername();
+    })
+  }
+
+  checkValidUsername() {
+    let username = this.addUser.controls.username.value;
+    this.userService.validUsername(username).subscribe((payload) => {
+      this.validUsername = payload.validUsername;
+    });
+  }
 
   postUser(selectedUser: User | null) {
+    if(!this.validUsername){
+      alert(
+        "The username you have selected is already chosen please again."
+      )
+      return
+    }
+    
     !selectedUser
       ? this.store.dispatch(createUser({ data: this.addUser.value }))
       : this.store.dispatch(
