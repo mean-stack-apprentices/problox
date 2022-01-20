@@ -2,6 +2,9 @@ import express from "express";
 import { UserModel } from '../schemas/user.schema.js'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config()
 
 export const userRouter = express.Router()
 
@@ -54,7 +57,7 @@ userRouter.post("/create-user", function (req, res) {
     })
   });
 
-  userRouter.post("valid-username", async function(req, res){
+  userRouter.post("/valid-username", async function(req, res){
     const {username} = req.body;
     let user = await UserModel.findOne({username}).lean();
     if (user) {
