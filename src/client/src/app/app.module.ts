@@ -14,7 +14,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user/user.effects';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
-import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageGamesComponent } from './pages/page-games/page-games.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,6 +21,8 @@ import { CreateMerchComponent } from './components/create-merch/create-merch.com
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GameEffects } from './store/effects/game/game.effects';
+import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -30,7 +31,6 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     AppComponent,
     UsersListComponent,
     PageJoinGameComponent,
-    PageCreateGameComponent,
     LoginComponent,
     RegisterComponent,
     CreateMerchComponent,
@@ -38,6 +38,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     ContactPageComponent,
     PageGamesComponent,
     NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,8 +49,9 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, GameEffects]),
     SocketIoModule.forRoot(config),
+    StoreModule.forFeature(gameFeatureKey, reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
