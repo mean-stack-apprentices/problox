@@ -6,6 +6,7 @@ import * as socketIO from "socket.io";
 import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
+import { apiRouter } from './routers/api.routes.js'
 
 
 dotenv.config();
@@ -37,17 +38,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.get("/api/test", function (req, res) {
-  res.json({message: "Hello World!"});
-});
 
-
-
-app.all("/api/*", function (req, res) {
-  res.sendStatus(404);
-});
-
-
+app.use('/api', apiRouter);
 
 server.listen(PORT, function () {
   // console.log(`starting at localhost http://localhost:${PORT}`);
