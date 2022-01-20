@@ -1,0 +1,42 @@
+.navbar {
+  justify-content: space-between;
+}
+
+span {
+  padding-right: 1rem;
+}
+
+mat-toolbar {
+  border-radius: 3px;
+}
+
+// mat-sidenav {
+//   margin: 16px;
+//   width: 200px;
+//   border-right: none;
+//   background: blue;
+//   color: white;
+//   border-radius: 10px;
+//   padding: 16px;
+//   text-align: center;
+// }
+
+// .content {
+//   height: calc(100vh - 98px);
+//   margin: 16px;
+//   margin-left: 32px;
+//   display: flex;
+//   justify-content: center;
+// }
+
+// mat-sidenav-container {
+//   height: calc(100vh - 65px);
+// }
+
+// @media(max-width: 950px) {
+//   mat-toolbar {
+//       border-radius: 0px;
+//   }
+// }
+
+

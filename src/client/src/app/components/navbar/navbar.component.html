@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="navbar">
+  <div><mat-icon>group_work</mat-icon>Problox</div>
+
+  <div>
+    <a mat-button routerLink="home"> <mat-icon>home</mat-icon></a>
+
+    <!-- <a mat-button routerLink="join-game">Games</a> -->
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="games">All Games</button>
+      <button mat-menu-item routerLink="create-game">Add Game</button>
+      <button mat-menu-item routerLink="join-game">Play Game</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="appMenu">Games</button>
+
+    <a mat-button routerLink="create-merch">Merch</a>
+
+    <!-- <a mat-button routerLink="create-message">Chat</a> -->
+    <mat-menu #appmenu="matMenu">
+      <button mat-menu-item routerLink="create-message">Create-Message</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="appmenu">Chat</button>
+
+    <a mat-button routerLink="contact-page">Contact</a>
+    <a mat-button routerLink="login">Login</a>
+    <a mat-raised-button routerLink="register" color="accent">Sign Up</a>
+    <a mat-button><mat-icon>logout</mat-icon></a>
+  </div>
+</mat-toolbar>
+
+

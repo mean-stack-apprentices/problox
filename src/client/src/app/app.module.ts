@@ -21,16 +21,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateMerchComponent } from './components/create-merch/create-merch.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
-import { NavbarComponent } from './styles/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-// import { SidenavListComponent } from './components/sidenav-list/sidenav-list.component';
-import { MatMenuModule } from '@angular/material/menu';
-
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import {MaterialModule} from './material/material.module';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -47,6 +42,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     ContactPageComponent,
     PageGamesComponent,
     NavbarComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,12 +56,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     EffectsModule.forRoot([UserEffects]),
     SocketIoModule.forRoot(config),
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatMenuModule,
+    MaterialModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
