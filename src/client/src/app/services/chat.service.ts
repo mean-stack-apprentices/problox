@@ -8,7 +8,7 @@ import { Chat } from '../../../../shared/models/chat.model'
   providedIn: 'root'
 })
 export class ChatService {
-
+  routeString = 'chat/'
   constructor(private api:ApiService) { }
 
   socket = io('http://localhost:3000/')
@@ -56,6 +56,6 @@ newMessageRecevied() {
   return observable
 }
 createMessage(chat: Chat) {
-  return this.api.post<{data: Chat}>('create-message', chat).pipe(map(res => res.data));
+  return this.api.post<{data: Chat}>(`${this.routeString}create-message`, chat).pipe(map(res => res.data));
 }
 }

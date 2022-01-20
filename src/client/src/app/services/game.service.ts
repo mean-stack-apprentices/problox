@@ -8,14 +8,14 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class GameService {
-
+   routeString = 'games/'
   constructor(private api: ApiService) {}
 
     getGames(){
-      return this.api.get<{data: Game[]}>('games').pipe(map((res) => res.data))
+      return this.api.get<{data: Game[]}>(this.routeString).pipe(map((res) => res.data))
     };
 
     addGame(game: Game){
-      return this.api.post<{data:Game}>('create-game', game).pipe(map((res) => res.data))
+      return this.api.post<{data:Game}>(`${this.routeString}create-game`, game).pipe(map((res) => res.data))
     };
 }

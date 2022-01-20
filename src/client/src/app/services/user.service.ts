@@ -8,29 +8,29 @@ import { User } from '../../../../shared/models/user.model';
 })
 export class UserService {
   selectedUserId = '';
-
+  routeString = 'users/'
   constructor(private api: ApiService) {}
 
   getUsers() {
-    return this.api.get<{ data: User[] }>('users').pipe(map((res) => res.data));
+    return this.api.get<{ data: User[] }>(this.routeString).pipe(map((res) => res.data));
   }
   createUser(user: User) {
     return this.api
-      .post<{ data: User }>('create-user', user)
+      .post<{ data: User }>(`${this.routeString}create-user`, user)
       .pipe(map((res) => res.data));
   }
   login(user: Partial<User>) {
     return this.api
-      .post<{ data: User }>('login', user)
+      .post<{ data: User }>(`${this.routeString}login`, user)
       .pipe(map((res) => res.data));
   }
   updateUser(user: User) {
-    return this.api.put<User>('update-user/' + user._id, user);
+    return this.api.put<User>(`${this.routeString}update-user/` + user._id, user);
   }
 
   deleteUser(user: User) {
     return this.api
-      .delete<{ data: User }>('delete-user/' + user._id)
+      .delete<{ data: User }>(`${this.routeString}delete-user/` + user._id)
       .pipe(map((res) => res.data));
   }
 
@@ -38,11 +38,11 @@ export class UserService {
     this.selectedUserId = id;
   }
   sendEmail(data:any){
-    return this.api.post('sendEmail', data)
+    return this.api.post(`${this.routeString}sendEmail`, data)
     }
 
   validUsername(username: string) {
-    return this.api.post<{validUsername: boolean}>('valid-username', {username})
+    return this.api.post<{validUsername: boolean}>(`${this.routeString}valid-username`, {username})
   }
 }
 

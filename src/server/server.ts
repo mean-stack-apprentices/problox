@@ -6,19 +6,12 @@ import * as socketIO from "socket.io";
 import http from 'http';
 import dotenv from "dotenv";
 import path from 'path';
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { UserModel } from "./schemas/user.schema.js";
-import { ChatModel } from "./schemas/chat.schama.js";
-import { GameModel } from "./schemas/game.schema.js";
+import { apiRouter } from './routers/api.routes.js'
+
 
 dotenv.config();
 
-const saltRounds = 10;
-
 const __dirname = path.resolve();
-
-const access_secret = process.env.ACCESS_SECRET as string;
 
 const app = express();
 const server = http.createServer(app);
@@ -45,128 +38,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.get("/api/test", function (req, res) {
-  res.json({message: "Hello World!"});
-});
 
-app.post("/api/create-user", function (req, res) {
-  const { name, username, email, password } = req.body;
-
-  bcrypt.genSalt(saltRounds, function (err, salt) {
-    bcrypt.hash(password, salt, function (err, hash) {
-      const user = new UserModel({
-        name,
-        username,
-        email,
-        password: hash,
-        role: 'basic'
-      });
-
-      user
-      .save()
-        .then((data:any) => {
-          res.json({ data });
-        })
-        .catch((err:any) => {
-          res.status(501);
-          res.json({ errors: err });
-        });
-    });
-  });
-});
-
-
-app.post("/api/login", function(req, res) {
-  const {username, password} = req.body;
-
-  UserModel.findOne({username}).then(user => {
-    bcrypt.compare(password, `${user?.password}`, function(err, result) {
-      if (result) {
-        const accessToken = jwt.sign({user}, access_secret)
-        res.cookie('jwt', accessToken, {
-          httpOnly: true,
-          maxAge: 3600 * 1000,
-        })
-        res.json({data: user});
-      } else {
-        res.sendStatus(502);
-      }
-    })
-  })
-});
-
-app.get("/api/games", function(req,res){
-  GameModel.find({}, "-_id")
-  .then(data => {
-    res.json({data})
-  })
-  .catch(err => {
-    res.status(501).json({Error: err})
-  })
-})
-
-app.post("/api/create-game", function(req, res){
-  const {name, description, price, imgUrl, categories} = req.body;
-
-  const game = new GameModel({
-    name, 
-    description, 
-    price,
-    imgUrl,
-    categories
-  });
-
-  game.save()
-  .then(data => {
-    res.json({data});
-  }).catch(err => {
-    res.status(500).json({message: "Something went wrong"})
-  })
-})
-
-
-
-app.post("/api/create-message", function(req, res) {
-  const {sender, to, text} = req.body
-  const chat = new ChatModel({
-    sender,
-    to,
-    text
-  });
-  chat
-  .save()
-  .then((data) => {
-    res.json((data))
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(501);
-    res.json({errors: err})
-  })
-})
-app.get("/api/chats", function(req, res) {
-  ChatModel.find()
-  .then((data) => res.json({data}))
-  .catch((err) => {
-    res.status(501);
-    res.json({ errors: err });
-  });
-})
-app.post("/api/valid-username", async function(req, res){
-  const {username} = req.body;
-  let user = await UserModel.findOne({username}).lean();
-  if (user) {
-    res.json({validUsername: false});
-  } else {
-    res.json({validUsername: true});
-  }
-})
-
-app.all("/api/*", function (req, res) {
-  res.sendStatus(404);
-});
-
-
+app.use('/api', apiRouter);
 
 server.listen(PORT, function () {
   // console.log(`starting at localhost http://localhost:${PORT}`);
