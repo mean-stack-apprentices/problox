@@ -21,9 +21,9 @@ export class AddGameComponent implements OnInit {
     this.addGame = this.fb.group({
       name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       description: ["", [Validators.required, Validators.maxLength(50)]],
-      price: ["", [Validators.required]],
+      price: [0.00, [Validators.required]],
       imgUrl: [""],
-      categories: ["", [Validators.required]]
+      categories: ["free", [Validators.required]]
     })
    }
 
