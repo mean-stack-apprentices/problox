@@ -14,7 +14,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user/user.effects';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
-import { PageCreateGameComponent } from './pages/page-create-game/page-create-game.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageGamesComponent } from './pages/page-games/page-games.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -32,7 +31,6 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     AppComponent,
     UsersListComponent,
     PageJoinGameComponent,
-    PageCreateGameComponent,
     LoginComponent,
     RegisterComponent,
     CreateMerchComponent,
@@ -40,6 +38,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     ContactPageComponent,
     PageGamesComponent,
     NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
