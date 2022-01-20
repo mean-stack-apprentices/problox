@@ -20,7 +20,7 @@ chatRouter.post("/create-message", function(req, res) {
       res.json({errors: err})
     })
   })
-  chatRouter.get("/chats", function(req, res) {
+  chatRouter.get("/", function(req, res) {
     ChatModel.find()
     .then((data) => res.json({data}))
     .catch((err) => {

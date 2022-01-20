@@ -54,7 +54,17 @@ userRouter.post("/create-user", function (req, res) {
     })
   });
 
-  userRouter.get('/all', async function(req, res) {
+  userRouter.post("valid-username", async function(req, res){
+    const {username} = req.body;
+    let user = await UserModel.findOne({username}).lean();
+    if (user) {
+      res.json({validUsername: false});
+    } else {
+      res.json({validUsername: true});
+    }
+  })
+
+  userRouter.get('/', async function(req, res) {
     const users = await UserModel.find({});
     res.json({ data: users });
 });

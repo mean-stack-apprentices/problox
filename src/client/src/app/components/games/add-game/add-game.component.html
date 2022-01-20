@@ -1,0 +1,34 @@
+
+<h2>Add your game here</h2>
+<div>
+  <form [formGroup] = "addGame">
+    <div>
+      <label>Name: </label><br>
+      <input type="text" placeholder="Required" formControlName="name" style="width: 20rem" />
+    </div><br>
+    <div>
+      <label>Description: </label><br>
+      <textarea type="text" placeholder="Required" formControlName="description" style="resize: none; width: 20rem; height: 10rem"> </textarea>
+    </div><br>
+    <div>
+      <label>Price: </label><br>
+      <input type="number" placeholder="0.00" formControlName="price" value= 0.00 style="width: 20rem"/>
+    </div><br>
+    <div>
+      <label>Image URL:</label><br>
+      <input type="text" placeholder="Optional" formControlName="imgUrl" style="width: 20rem"/>
+    </div><br>
+    <div>
+      <label>Tier: </label><br>
+      <select name="tier" style="width: 20rem" formControlName="categories">
+        <option [ngValue]="null" disabled>Select a tier</option>
+        <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier}}</option>
+      </select>
+    </div><br>
+
+
+    <button (click)="postGame()">Add</button>
+  </form>
+
+
+</div>

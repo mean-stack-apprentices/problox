@@ -6,9 +6,9 @@ import { chatRouter } from "./chat-route.js";
 export const apiRouter = express.Router();
 
 // Routes go here
-apiRouter.use('', userRouter);
-apiRouter.use('', gameRouter);
-apiRouter.use('', chatRouter);
+apiRouter.use('/users', userRouter);
+apiRouter.use('/games', gameRouter);
+apiRouter.use('/chat', chatRouter);
 
 // resspone handler 
 apiRouter.use((req, res, next) => {

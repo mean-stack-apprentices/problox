@@ -2,7 +2,7 @@ import express from "express";
 import { GameModel } from '../schemas/game.schema.js'
 export const gameRouter = express.Router();
 
-gameRouter.get("/games", function(req,res){
+gameRouter.get("/", function(req,res){
     GameModel.find({}, "-_id")
     .then(data => {
       res.json({data})
