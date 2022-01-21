@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Game } from '../../../../shared/models/game.model';
-import { addGame } from '../store/actions/game/game.actions';
 import { ApiService } from './api.service';
 
 @Injectable({

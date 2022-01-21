@@ -21,8 +21,6 @@ import { CreateMerchComponent } from './components/create-merch/create-merch.com
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { GameEffects } from './store/effects/game/game.effects';
-import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
 import * as fromMerch from './store/reducers/merch/merch.reducer';
 import { MerchEffects } from './store/effects/merch/merch.effects';
 import { MerchComponent } from './components/merch/merch.component';
@@ -57,9 +55,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
-    EffectsModule.forRoot([UserEffects, GameEffects]),
+    EffectsModule.forRoot([UserEffects]),
     SocketIoModule.forRoot(config),
-    StoreModule.forFeature(gameFeatureKey, reducer),
     EffectsModule.forRoot([UserEffects, MerchEffects]),
     StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
     BrowserAnimationsModule,

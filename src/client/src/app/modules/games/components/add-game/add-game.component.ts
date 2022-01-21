@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
-import { addGame } from 'src/app/store/actions/game/game.actions';
+import { addGame } from 'src/app/modules/games/store/game.actions';
 
 
 @Component({

@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'create-merch', component: CreateMerchComponent},
   {path: 'merch', component: MerchComponent},
   {path: 'games', loadChildren:
-  () => import('./components/games/module-games/module-games.module').then(m => m.GamesModule)
+  () => import('./modules/games/module-games.module').then(m => m.GamesModule)
   },
   {path: '**', redirectTo: '/login'}
 ];
