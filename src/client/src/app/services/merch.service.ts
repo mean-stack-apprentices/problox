@@ -14,7 +14,10 @@ export class MerchService {
   { }
 
   createMerch(merch: Merch) {
-    console.log(merch);
     return this.api.post<Merch>(this.routeString + 'create-merch',merch);
+  }
+
+  getMerch() {
+    return this.api.get<Merch[]>(this.routeString);
   }
 }
