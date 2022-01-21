@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {AppState} from '../..';
-import * as fromGame from '../../reducers/game/game.reducer';
+import {AppState} from '../../../store';
+import * as fromGame from './game.reducer';
 
 const gameFeatureSelector = createFeatureSelector<AppState, fromGame.State>(fromGame.gameFeatureKey)
 
