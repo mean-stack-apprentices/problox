@@ -6,4 +6,4 @@ const chatSchema = new Schema({
     text: { type: String, required: true },
 });
 export const ChatModel = model('Chat', chatSchema);
-//# sourceMappingURL=chat.schama.js.map
+//# sourceMappingURL=chat.schema.js.map

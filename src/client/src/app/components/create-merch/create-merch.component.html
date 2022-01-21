@@ -9,7 +9,7 @@
         <input type="text" formControlName="description">
         <label for="imgUrl">ImgUrl</label>
         <input type="text" formControlName="imgUrl">
-        <button [disabled]="createMerchForm.invalid">Create new product</button>
+        <button [disabled]="createMerchForm.invalid" (click)="createProduct()">Create new product</button>
     </form>
 </div>
 
