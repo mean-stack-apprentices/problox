@@ -25,6 +25,7 @@ import { GameEffects } from './store/effects/game/game.effects';
 import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
 import * as fromMerch from './store/reducers/merch/merch.reducer';
 import { MerchEffects } from './store/effects/merch/merch.effects';
+import { MerchComponent } from './components/merch/merch.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -40,6 +41,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     ContactPageComponent,
     PageGamesComponent,
     NavbarComponent,
+    MerchComponent,
 
   ],
   imports: [

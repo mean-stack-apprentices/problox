@@ -22,10 +22,10 @@ export const loadMerchs = createAction(
 
 export const loadMerchsSuccess = createAction(
   '[Merch] Load Merchs Success',
-  props<{ data: any }>()
+  props<{ data: Merch[] }>()
 );
 
 export const loadMerchsFailure = createAction(
   '[Merch] Load Merchs Failure',
-  props<{ error: any }>()
+  props<{ error: Error }>()
 );

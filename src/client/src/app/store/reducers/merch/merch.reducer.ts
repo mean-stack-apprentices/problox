@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Merch } from '../../../../../../shared/models/merch.model';
-import { createMerchFailure, createMerchSuccess } from '../../actions/merch/merch.actions';
+import { createMerchFailure, createMerchSuccess, loadMerchsSuccess } from '../../actions/merch/merch.actions';
 
 
 export const merchFeatureKey = 'merch';
@@ -25,6 +25,9 @@ export const reducer = createReducer(
   }),
   on(createMerchFailure, (state, action) => {
     return {...state, errorMsg: action.error}
+  }),
+  on(loadMerchsSuccess, (state, action) => {
+    return {...state, merches: action.data}
   })
 );
 
