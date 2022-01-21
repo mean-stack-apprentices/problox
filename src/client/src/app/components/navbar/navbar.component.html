@@ -4,7 +4,6 @@
   <div>
     <a mat-button routerLink="home"> <mat-icon>home</mat-icon></a>
 
-    <!-- <a mat-button routerLink="join-game">Games</a> -->
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item routerLink="games">All Games</button>
       <button mat-menu-item routerLink="games/create-game">Add Game</button>
@@ -12,9 +11,12 @@
     </mat-menu>
     <button mat-button [matMenuTriggerFor]="appMenu">Games</button>
 
-    <a mat-button routerLink="create-merch">Merch</a>
+    <mat-menu #merchMenu="matMenu">
+      <button mat-menu-item routerLink="merch">Buy Merch</button>
+      <button mat-menu-item routerLink="create-merch">Create Merch</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="merchMenu">Merch</button>
 
-    <!-- <a mat-button routerLink="create-message">Chat</a> -->
     <mat-menu #appmenu="matMenu">
       <button mat-menu-item routerLink="create-message">Create-Message</button>
     </mat-menu>
