@@ -23,6 +23,8 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GameEffects } from './store/effects/game/game.effects';
 import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
+import * as fromMerch from './store/reducers/merch/merch.reducer';
+import { MerchEffects } from './store/effects/merch/merch.effects';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -52,6 +54,9 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     EffectsModule.forRoot([UserEffects, GameEffects]),
     SocketIoModule.forRoot(config),
     StoreModule.forFeature(gameFeatureKey, reducer),
+    EffectsModule.forRoot([UserEffects, MerchEffects]),
+    SocketIoModule.forRoot(config),
+    StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
