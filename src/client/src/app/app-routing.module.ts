@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PageJoinGameComponent } from './pages/page-join-game/page-join-game.component';
 import { CreateMerchComponent } from './components/create-merch/create-merch.component';
+import { MerchComponent } from './components/merch/merch.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,8 +15,9 @@ const routes: Routes = [
   {path: 'create-message', component:ChatComponent},
   {path:'contact-page', component:ContactPageComponent},
   {path: 'create-merch', component: CreateMerchComponent},
+  {path: 'merch', component: MerchComponent},
   {path: 'games', loadChildren:
-  () => import('./components/games/module-games/module-games.module').then(m => m.GamesModule)
+  () => import('./modules/games/module-games.module').then(m => m.GamesModule)
   },
   {path: '**', redirectTo: '/login'}
 ];

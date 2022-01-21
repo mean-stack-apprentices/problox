@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { GameService } from 'src/app/services/game.service';
-import * as gameAction from '../../actions/game/game.actions';
+import * as gameAction from './game.actions';
 
 @Injectable()
 export class GameEffects {

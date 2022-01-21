@@ -17,4 +17,10 @@ merchRouter.post("/create-merch", function (req, res) {
     })
         .catch(err => res.status(501).json(err));
 });
+merchRouter.get("", function (req, res) {
+    MerchModel
+        .find()
+        .then(data => res.json(data))
+        .catch(err => res.status(403).json(err));
+});
 //# sourceMappingURL=merch-route.js.map

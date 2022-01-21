@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 import { Game } from '../../../../../../shared/models/game.model';
-import * as gameAction from '../../actions/game/game.actions';
+import * as gameAction from './game.actions';
 
 
 export const gameFeatureKey = 'game';

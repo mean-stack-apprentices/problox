@@ -7,7 +7,7 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import * as fromUser from './reducers/user/user.reducer';
-import * as fromGame from './reducers/game/game.reducer';
+import * as fromGame from '../modules/games/store/game.reducer';
 import * as fromMerch from './reducers/merch/merch.reducer';
 
 
