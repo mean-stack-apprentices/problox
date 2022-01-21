@@ -1,54 +1,30 @@
-<div>
-  <ul>
-  <li><div class="dropdown">
-    <span class="dropbtn">User</span>
-    <div class="dropdown-content">
-      <a routerLink="/login">Log In</a>
-      <a routerLink="/register">Register</a>
-    </div>
-  </div>
-</li>
+<mat-toolbar color="primary" class="navbar">
+  <div><mat-icon>group_work</mat-icon>Problox</div>
 
-<li><div class="dropdown">
-  <span class="dropbtn">Games</span>
-  <div class="dropdown-content">
-    <a routerLink="/games">All Games</a>
-    <a routerLink="/games/create-game">Add Game</a>
-  </div>
-</div>
-</li>
+  <div>
+    <a mat-button routerLink="home"> <mat-icon>home</mat-icon></a>
 
-<li><div class="dropdown">
-  <span class="dropbtn">Merch</span>
-  <div class="dropdown-content">
-    <a routerLink="/merch">Buy Merch</a>
-    <a routerLink="/create-merch">Create Merch</a>
-  </div>
-</div>
-</li>
+    <!-- <a mat-button routerLink="join-game">Games</a> -->
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="games">All Games</button>
+      <button mat-menu-item routerLink="create-game">Add Game</button>
+      <button mat-menu-item routerLink="join-game">Play Game</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="appMenu">Games</button>
 
-<li><div class="dropdown">
-  <span class="dropbtn">Email</span>
-  <div class="dropdown-content">
-    <a routerLink="/contact-page">Contact Page</a>
-  </div>
-</div>
-</li>
+    <a mat-button routerLink="create-merch">Merch</a>
 
-<li><div class="dropdown">
-  <span class="dropbtn">Chat</span>
-  <div class="dropdown-content">
-    <a routerLink="/create-message">Create Message</a>
-  </div>
-</div>
-</li>
+    <!-- <a mat-button routerLink="create-message">Chat</a> -->
+    <mat-menu #appmenu="matMenu">
+      <button mat-menu-item routerLink="create-message">Create-Message</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="appmenu">Chat</button>
 
-<li><div class="dropdown">
-  <span class="dropbtn">Promotions</span>
-  <div class="dropdown-content">
-    <!-- <a routerLink="/create-message"></a> -->
+    <a mat-button routerLink="contact-page">Contact</a>
+    <a mat-button routerLink="login">Login</a>
+    <a mat-raised-button routerLink="register" color="accent">Sign Up</a>
+    <a mat-button><mat-icon>logout</mat-icon></a>
   </div>
-</div>
-</li>
-</ul>
-</div>
+</mat-toolbar>
+
+

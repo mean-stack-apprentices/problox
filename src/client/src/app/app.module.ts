@@ -26,6 +26,10 @@ import { gameFeatureKey, reducer } from './store/reducers/game/game.reducer';
 import * as fromMerch from './store/reducers/merch/merch.reducer';
 import { MerchEffects } from './store/effects/merch/merch.effects';
 import { MerchComponent } from './components/merch/merch.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {MaterialModule} from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -42,7 +46,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     PageGamesComponent,
     NavbarComponent,
     MerchComponent,
-
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,8 +61,10 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     SocketIoModule.forRoot(config),
     StoreModule.forFeature(gameFeatureKey, reducer),
     EffectsModule.forRoot([UserEffects, MerchEffects]),
-    SocketIoModule.forRoot(config),
     StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
+    BrowserAnimationsModule,
+    MaterialModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
