@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'contact-page', component:ContactPageComponent},
   {path: 'create-merch', component: CreateMerchComponent},
   {path: 'games', loadChildren:
-  () => import('./modules/games/module/module-games.module').then(m => m.GamesModule)
+  () => import('./modules/games/module-games.module').then(m => m.GamesModule)
   },
   {path: '**', redirectTo: '/login'}
 ];
