@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddGameComponent } from '../add-game/add-game.component';
+import { AddGameComponent } from '../components/add-game/add-game.component';
 import { RoutingModule } from './routing.module';
 
 
