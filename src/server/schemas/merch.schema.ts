@@ -1,5 +1,7 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 import { Merch } from "../../shared/models/merch.model.js";
+
+const { model, Schema } = mongoose;
 
 const merchSchema = new Schema<Merch>({
     name: {type: String, required: true},

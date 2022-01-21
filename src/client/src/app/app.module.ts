@@ -21,6 +21,8 @@ import { CreateMerchComponent } from './components/create-merch/create-merch.com
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import * as fromMerch from './store/reducers/merch/merch.reducer';
+import { MerchEffects } from './store/effects/merch/merch.effects';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -49,6 +51,9 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forRoot([UserEffects]),
     SocketIoModule.forRoot(config),
+    EffectsModule.forRoot([UserEffects, MerchEffects]),
+    SocketIoModule.forRoot(config),
+    StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]

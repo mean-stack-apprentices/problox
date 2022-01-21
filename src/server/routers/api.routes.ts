@@ -2,6 +2,7 @@ import express, { ErrorRequestHandler, NextFunction, Request, Response } from "e
 import { userRouter } from "./user-route.js";
 import { gameRouter } from "./game-route.js";
 import { chatRouter } from "./chat-route.js";
+import { merchRouter } from "./merch-route.js";
 
 export const apiRouter = express.Router();
 
@@ -9,6 +10,7 @@ export const apiRouter = express.Router();
 apiRouter.use('/users', userRouter);
 apiRouter.use('/games', gameRouter);
 apiRouter.use('/chat', chatRouter);
+apiRouter.use('/merch', merchRouter);
 
 // resspone handler 
 apiRouter.use((req, res, next) => {
