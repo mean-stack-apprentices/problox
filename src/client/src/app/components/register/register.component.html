@@ -8,8 +8,13 @@
       <form [formGroup]="addUser">
         <div class="user_name">
           <input type="text" placeholder="Name" formControlName="name" />
-          <app-fa-icon icon='faSolidTimesCircle'></app-fa-icon>
           <input type="text" placeholder="UserName" formControlName="username" />
+          <ng-container *ngIf="validUsername; else faX">
+            <app-fa-icon class='green' icon='faSolidCheckCircle'></app-fa-icon>
+          </ng-container>
+          <ng-template #faX>
+            <app-fa-icon class="red" icon='faSolidTimesCircle'></app-fa-icon>
+          </ng-template>
         </div>
   
         <div class="email_password">
