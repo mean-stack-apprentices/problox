@@ -1,9 +1,14 @@
-<section>
-    <h1 class="h1-responsive font-weight-bold text-center my-4">contact us</h1>
+
+<section class="mb-4">
+    <h1 class="h1-responsive font-weight-bold text-center my-4">Contact Us</h1>
+
+    <div class="container">
     <div class="row">
+
         <div class="col-md-6">
             <form style="width:50%; margin:auto">
             <div>
+
          <div style="width: 100% "class="row">
             <input placeholder="Email" [formControl]="emailFormControl">
             <div *ngIf="emailFormControl.invalid && (emailFormControl.touched)">
@@ -14,10 +19,11 @@
             </div>
             <br>
             <div style="width:100%" class="row">
-                <input placeholder="name" [formControl]="nameFormControl"/>
-                <div *ngIf="nameFormControl.hasError('minlength')"></div>
+                <input placeholder="Name" [formControl]="nameFormControl"/>
+                <div *ngIf="nameFormControl.hasError('minlength')">
                 <p>name must be at least 4 characters long.</p>
 
+                </div>
                 </div><br>
 
                 <div style="width: 100%" class="row">
@@ -41,7 +47,7 @@
                      </form>
 
                      </div>
-                     <div class="col-md-3 text-center">
+                     <div class="col-md-6 text-center">
                          <ul class="list-unstyled mb-0">
                     <li><i class="fas fa-map-marker-alt fa-2x"></i>
                         <p>San Francisco, CA 94135, USA</p>
@@ -58,5 +64,5 @@
 
                      </div>
         </div>
-    
+    </div>
 </section>
