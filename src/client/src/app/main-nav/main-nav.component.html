@@ -15,14 +15,17 @@
         <button mat-menu-item routerLink="create-game" (click)="drawer.toggle()">Add Game</button>
         <button mat-menu-item routerLink="join-game" (click)="drawer.toggle()">Play Game</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="appMenu">Games</button>
+      <button mat-button [matMenuTriggerFor]="appMenu">Games<mat-icon>unfold_more</mat-icon></button>
 
       <a mat-list-item routerLink="create-merch" (click)="drawer.toggle()">Merch</a>
 
       <mat-menu #appmenu="matMenu" class="dropdown">
         <button mat-menu-item routerLink="create-message" (click)="drawer.toggle()">Create-Message</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="appmenu" ><mat-icon> chat</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="appmenu" >
+        <mat-icon> chat</mat-icon>
+        <mat-icon>unfold_more</mat-icon>
+      </button>
 
       <a mat-list-item routerLink="contact-page" (click)="drawer.toggle()"><mat-icon> email</mat-icon></a>
 
@@ -31,7 +34,12 @@
         <button mat-menu-item routerLink="register" (click)="drawer.toggle()">Sign Up</button>
         <button mat-menu-item routerLink="logout" (click)="drawer.toggle()"><mat-icon>logout</mat-icon></button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="appProfile" ><mat-icon>account_circle</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="appProfile" >
+        
+        <mat-icon>account_circle</mat-icon>
+        <mat-icon>unfold_more</mat-icon>
+      </button>
+        
         <!-- <a mat-button routerLink="login">Login</a>
         <a mat-list-item routerLink="register" color="accent">Sign Up</a>
         <a mat-button><mat-icon>logout</mat-icon></a> -->
@@ -39,7 +47,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="navbar" >
+    <mat-toolbar color="primary" class="navbar" (sidenavToggle)="drawer.toggle()">
       <button
         type="button"
         aria-label="Toggle sidenav"

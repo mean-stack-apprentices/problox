@@ -10,6 +10,8 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MainNavComponent {
 
+  @Output() public sidenavToggle = new EventEmitter();
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -18,4 +20,7 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  public onTogglesidenav = () => {
+    this.sidenavToggle.emit();
+  }
 }
