@@ -1,8 +1,9 @@
 import express from "express";
-import { UserModel } from '../schemas/user.schema.js';
+import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { authHandler } from "../middleware/auth.middleware.js";
 dotenv.config();
 export const userRouter = express.Router();
 const saltRounds = 10;
@@ -16,7 +17,7 @@ userRouter.post("/create-user", function (req, res) {
                 username,
                 email,
                 password: hash,
-                role: 'basic'
+                role: "basic",
             });
             user
                 .save()
@@ -32,11 +33,11 @@ userRouter.post("/create-user", function (req, res) {
 });
 userRouter.post("/login", function (req, res) {
     const { username, password } = req.body;
-    UserModel.findOne({ username }).then(user => {
+    UserModel.findOne({ username }).then((user) => {
         bcrypt.compare(password, `${user?.password}`, function (err, result) {
             if (result) {
                 const accessToken = jwt.sign({ user }, access_secret);
-                res.cookie('jwt', accessToken, {
+                res.cookie("jwt", accessToken, {
                     httpOnly: true,
                     maxAge: 3600 * 1000,
                 });
@@ -58,8 +59,15 @@ userRouter.post("/valid-username", async function (req, res) {
         res.json({ validUsername: true });
     }
 });
-userRouter.get('/', async function (req, res) {
+userRouter.get("/", async function (req, res) {
     const users = await UserModel.find({});
     res.json({ data: users });
+});
+userRouter.get("/logout", authHandler, function (req, res) {
+    res.cookie("jwt", "", {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+    });
+    res.json({ message: "Successfully Logged out" });
 });
 //# sourceMappingURL=user-route.js.map
