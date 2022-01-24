@@ -3,6 +3,7 @@ import { userRouter } from "./user-route.js";
 import { gameRouter } from "./game-route.js";
 import { chatRouter } from "./chat-route.js";
 import { merchRouter } from "./merch-route.js";
+import { emailRouter } from "./email-route.js";
 
 export const apiRouter = express.Router();
 
@@ -11,6 +12,7 @@ apiRouter.use('/users', userRouter);
 apiRouter.use('/games', gameRouter);
 apiRouter.use('/chat', chatRouter);
 apiRouter.use('/merch', merchRouter);
+apiRouter.use('/email', emailRouter);
 
 // resspone handler 
 apiRouter.use((req, res, next) => {
