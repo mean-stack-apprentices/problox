@@ -3,6 +3,7 @@ import { userRouter } from "./user-route.js";
 import { gameRouter } from "./game-route.js";
 import { chatRouter } from "./chat-route.js";
 import { merchRouter } from "./merch-route.js";
+import { adminRouter } from "./admin.route.js";
 
 export const apiRouter = express.Router();
 
@@ -11,8 +12,8 @@ apiRouter.use('/users', userRouter);
 apiRouter.use('/games', gameRouter);
 apiRouter.use('/chat', chatRouter);
 apiRouter.use('/merch', merchRouter);
-
-// resspone handler 
+apiRouter.use('/admin', adminRouter);
+// respones handler 
 apiRouter.use((req, res, next) => {
     if (res.locals.data) {
       res.status(200).json({ data: res.locals.data });
