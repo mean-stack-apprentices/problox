@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { EmailService } from 'src/app/services/email.service';
+
 
 @Component({
   selector: 'app-contact-page',
@@ -18,7 +19,7 @@ export class ContactPageComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private emailService: EmailService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +35,7 @@ export class ContactPageComponent implements OnInit {
 
     }
 
-    this.userService.sendEmail(user).subscribe(
+    this.emailService.sendEmail(user).subscribe(
       data => {
         let res:any = data;
       },
