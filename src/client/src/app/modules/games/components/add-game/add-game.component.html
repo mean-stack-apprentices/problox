@@ -1,33 +1,42 @@
 
-<h2>Add your game here</h2>
+<h2>Add a Game!</h2>
 <div>
-  <form [formGroup] = "addGame">
+  <form [formGroup] = "addGame" (ngSubmit)="postGame()">
     <div>
-      <label>Name: </label><br>
-      <input type="text" placeholder="Required" formControlName="name" style="width: 20rem" />
-    </div><br>
+      <mat-form-field appearance="outline" class="form-element" >
+        <mat-label>Name: </mat-label>
+        <input type="text" matInput placeholder="Required" formControlName="name" />
+    </mat-form-field>
+  </div>
     <div>
-      <label>Description: </label><br>
-      <textarea type="text" placeholder="Required" formControlName="description" style="resize: none; width: 20rem; height: 10rem"> </textarea>
-    </div><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Description: </mat-label>
+        <textarea type="text" matInput placeholder="Required" formControlName="description" > </textarea>
+      </mat-form-field>
+    </div>
     <div>
-      <label>Price: </label><br>
-      <input type="number" placeholder="0.00" formControlName="price" value= 0.00 style="width: 20rem"/>
-    </div><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Price: </mat-label>
+        <input type="text" matInput currencyMask placeholder="0.00" formControlName="price" value= 0.00 />
+      </mat-form-field>
+    </div>
     <div>
-      <label>Image URL:</label><br>
-      <input type="text" placeholder="Optional" formControlName="imgUrl" style="width: 20rem"/>
-    </div><br>
-    <div>
-      <label>Tier: </label><br>
-      <select name="tier" style="width: 20rem" formControlName="categories">
-        <option [ngValue]="null" disabled>Select a tier</option>
-        <option *ngFor="let tier of tiers" [ngValue]="tier">{{tier}}</option>
-      </select>
-    </div><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Image URL:</mat-label><br>
+        <input type="text" matInput placeholder="Optional" formControlName="imgUrl" />
+      </mat-form-field>
+    </div>
+    <div class="select-element">
+      <mat-form-field appearance="outline">
+        <mat-label>Tier: </mat-label><br>
+        <mat-select  name="tier" style="width: 20rem" formControlName="categories">
+          <mat-option [value]="null" disabled>Select a tier</mat-option>
+          <mat-option *ngFor="let tier of tiers" [value]="tier">{{tier}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-
-    <button (click)="postGame()">Add</button>
+      <button (click)="postGame()">Add</button>
   </form>
 
 
