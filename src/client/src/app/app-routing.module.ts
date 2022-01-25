@@ -17,10 +17,10 @@ const routes: Routes = [
   {path:'contact-page', component:ContactPageComponent},
   {path: 'create-merch', component: CreateMerchComponent},
   {path: 'merch', component: MerchComponent},
+  {path: 'merch-details', component: MerchDetailsComponent},
   {path: 'games', loadChildren:
   () => import('./modules/games/module-games.module').then(m => m.GamesModule)
   },
-  {path: 'merch-details', component: MerchDetailsComponent},
   {path: '**', redirectTo: '/login'}
 ];
 
