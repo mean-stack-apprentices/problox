@@ -27,6 +27,7 @@ import { FaModule } from './modules/fa/fa.module';
 import { MerchComponent } from './components/merch/merch.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+
 import {MaterialModule} from './material/material.module';
 
 import { MainNavComponent } from './main-nav/main-nav.component';
