@@ -1,21 +1,43 @@
 label{
-    color: white;
+    color: black;
   }
   h1{
-    color: white;
+ color: black;
+  margin-top: 40px;
+  font-size: 30px;
     }
     p
 {
   color: black;
+  margin-top: 10px;
+}
+  
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+
+button[_ngcontent-wgy-c45] {
+  margin: 8px 0px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center!important;
+}
+
+.row>*{
+  width: 100%;
+}
+.row{
+  display: flex;
+  margin-top: 20px;
 }
 button {
-    margin: 8px 0px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  button {
     margin: 8px 0px;
     border: none;
     cursor: pointer;

@@ -9,6 +9,7 @@ import { User } from '../../../../shared/models/user.model';
 export class UserService {
   selectedUserId = '';
   routeString = 'users/'
+
   constructor(private api: ApiService) {}
 
   getUsers() {
@@ -37,10 +38,7 @@ export class UserService {
   selectUser(id: string) {
     this.selectedUserId = id;
   }
-  sendEmail(data:any){
-    return this.api.post(`${this.routeString}sendEmail`, data)
-    }
-
+ 
   validUsername(username: string) {
     return this.api.post<{validUsername: boolean}>(`${this.routeString}valid-username`, {username})
   }
