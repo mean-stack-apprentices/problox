@@ -8,7 +8,7 @@ const {Schema, model} = mongoose
 
 const friendsSchema = new Schema<Friends>({
 user: {type: mongoose.Types.ObjectId},
-text: {type: String, required: true},
+friends: {type: [], required: true},
  
 })
 
