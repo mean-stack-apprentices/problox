@@ -1,9 +1,11 @@
 
-<div class="main-div">
+<div class="main-div" (click)="navigateToDetails()">
     <div class="merch-container-div">
         <div class="merch-details-div" *ngFor="let merch of (merch$ | async)">
                 <img src="{{merch.imgUrl}}" >
-                <p><b>{{merch.name}}</b></p>
+                <p class="merch-name">
+                    <b>{{merch.name}}</b>
+                </p>
                 <p class="price">$ {{merch.price}}</p>
                 <p>
                     <b>About this item:</b>
