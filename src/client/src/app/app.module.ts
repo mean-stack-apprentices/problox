@@ -23,11 +23,13 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import * as fromMerch from './store/reducers/merch/merch.reducer';
 import { MerchEffects } from './store/effects/merch/merch.effects';
+import { FaModule } from './modules/fa/fa.module';
 import { MerchComponent } from './components/merch/merch.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import {MaterialModule} from './material/material.module';
+import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -45,6 +47,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     NavbarComponent,
     MerchComponent,
     SidebarComponent,
+    MerchDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     SocketIoModule.forRoot(config),
     EffectsModule.forRoot([UserEffects, MerchEffects]),
     StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
+    FaModule,
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
