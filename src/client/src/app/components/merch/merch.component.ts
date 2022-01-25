@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
@@ -14,7 +15,8 @@ import { Merch } from '../../../../../shared/models/merch.model';
 export class MerchComponent implements OnInit {
   merch$: Observable<Merch[]>
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) 
   {
     this.store.dispatch(loadMerchs());
@@ -23,6 +25,11 @@ export class MerchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  navigateToDetails() {
+    console.log("clicked");
+    this.router.navigate(['merch-details']);
   }
 
 }
