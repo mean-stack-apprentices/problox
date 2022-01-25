@@ -1,8 +1,8 @@
 import express from "express";
-import { AdminModel } from '../schemas/admin.schema.js'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { UserModel } from "../schemas/user.schema.js";
 
 dotenv.config()
 
@@ -11,13 +11,13 @@ export const adminRouter = express.Router()
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET as string;
 
-adminRouter.post("/create-admin", function (req, res) {
-    const {adminName, email, password } = req.body;
-  
+adminRouter.post("/create-admin",  function (req, res) {
+    const {name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, function (err, hash) {
-        const admin = new AdminModel({
-          adminName,
+        const admin = new UserModel({
+          name,
+          username,
           email,
           password: hash,
           role: 'admin'
@@ -35,4 +35,4 @@ adminRouter.post("/create-admin", function (req, res) {
       });
     });
   });
-  
+
