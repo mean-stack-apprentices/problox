@@ -16,7 +16,7 @@ export class MerchComponent implements OnInit {
   merch$: Observable<Merch[]>
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
   ) 
   {
     this.store.dispatch(loadMerchs());
@@ -28,7 +28,6 @@ export class MerchComponent implements OnInit {
   }
 
   navigateToDetails() {
-    console.log("clicked");
     this.router.navigate(['merch-details']);
   }
 
