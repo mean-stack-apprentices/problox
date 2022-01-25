@@ -1,23 +1,38 @@
 
 <h2>Add a Game!</h2>
 <div>
-  <form [formGroup] = "addGame">
+  <form [formGroup] = "addGame" (ngSubmit)="postGame()">
     <div>
       <mat-form-field appearance="outline" class="form-element" >
         <mat-label>Name: </mat-label>
-        <input type="text" matInput placeholder="Required" formControlName="name" />
+        <input type="text" matInput placeholder="Required" formControlName="name" required/>
+
+        <mat-error *ngIf="addGame.controls.name.errors">
+          <span *ngIf="addGame.controls.name.errors.required">Name is empty</span>
+          <span *ngIf=" !addGame.controls.name.errors.required">Name should have 3-25 characters</span>
+        </mat-error>
     </mat-form-field>
   </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Description: </mat-label>
-        <textarea type="text" matInput placeholder="Required" formControlName="description" > </textarea>
+        <textarea type="text" matInput placeholder="Required" formControlName="description" required > </textarea>
+
+        <mat-error *ngIf="addGame.controls.description.errors">
+          <span *ngIf="addGame.controls.description.errors.required">Description is empty</span>
+          <span *ngIf="!addGame.controls.description.errors.required">Description should have less than 50 characters</span>
+        </mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Price: </mat-label>
         <input type="text" matInput currencyMask placeholder="0.00" formControlName="price" value= 0.00 />
+
+        <mat-error *ngIf="addGame.controls.price.errors && addGame.controls.categories.errors">
+          <!-- <span *ngIf="addGame.controls.categories.value === 'paid' && ">Description is empty</span> -->
+          <!-- <span *ngIf="!addGame.controls.description.errors.required">Description should have less than 50 characters</span> -->
+        </mat-error>
       </mat-form-field>
     </div>
     <div>
@@ -29,7 +44,7 @@
     <div class="select-element">
       <mat-form-field appearance="outline">
         <mat-label>Tier: </mat-label><br>
-        <mat-select  name="tier" style="width: 20rem" formControlName="categories">
+        <mat-select  name="tier"  formControlName="categories">
           <mat-option [value]="null" disabled>Select a tier</mat-option>
           <mat-option *ngFor="let tier of tiers" [value]="tier">{{tier}}</mat-option>
         </mat-select>
