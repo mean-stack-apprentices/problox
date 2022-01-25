@@ -4,6 +4,7 @@ import { gameRouter } from "./game-route.js";
 import { chatRouter } from "./chat-route.js";
 import { merchRouter } from "./merch-route.js";
 import { adminRouter } from "./admin.route.js";
+import { emailRouter } from "./email-route.js";
 export const apiRouter = express.Router();
 // Routes go here
 apiRouter.use('/users', userRouter);
@@ -11,7 +12,8 @@ apiRouter.use('/games', gameRouter);
 apiRouter.use('/chat', chatRouter);
 apiRouter.use('/merch', merchRouter);
 apiRouter.use('/admin', adminRouter);
-// respones handler 
+apiRouter.use('/email', emailRouter);
+// response handler 
 apiRouter.use((req, res, next) => {
     if (res.locals.data) {
         res.status(200).json({ data: res.locals.data });
