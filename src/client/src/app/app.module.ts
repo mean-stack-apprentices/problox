@@ -49,7 +49,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MerchComponent,
     SidebarComponent,
     MerchDetailsComponent,
-    UsersGamesListComponent,
+
   ],
   imports: [
     BrowserModule,

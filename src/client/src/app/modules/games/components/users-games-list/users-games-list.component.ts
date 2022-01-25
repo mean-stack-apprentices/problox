@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-users-games-list',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersGamesListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gamesService: GameService, private store: Store, ) { }
 
   ngOnInit(): void {
   }
