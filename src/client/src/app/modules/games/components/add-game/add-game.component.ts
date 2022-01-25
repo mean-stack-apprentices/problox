@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { addGame } from 'src/app/modules/games/store/game.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { tierValidation } from '../../validations/add-game.validation';
 
 
 @Component({
@@ -24,12 +25,12 @@ export class AddGameComponent implements OnInit {
       description: ["", Validators.compose([Validators.required, Validators.maxLength(50)])],
       price: [0.00],
       imgUrl: [""],
-      categories: ["free"]
-    })
+      tier: ["free"]
+    }, {validators:[ tierValidation('price', 'tier')]})
    }
 
-  get categories(){
-    return this.addGame.get('categories')
+  get tier(){
+    return this.addGame.get('tier')
   }
 
   ngOnInit(): void {
@@ -39,13 +40,13 @@ export class AddGameComponent implements OnInit {
 
     if (this.addGame.valid){
     this.store.dispatch(addGame({data: this.addGame.value}));
-    this.snackBar.open('Game Added Successfully!', '_', {
+    this.snackBar.open('Game Added Successfully!', '', {
       duration: 2000
     });
     this.addGame.reset();
     this.router.navigate(['/games'])
     }else{
-      this.snackBar.open('Adding a Game failed. Please try again.', '_', {
+      this.snackBar.open('Adding a Game failed. Please try again.', '', {
         duration: 2000
       })
     }
