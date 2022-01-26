@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Merch } from '../../../../../../shared/models/merch.model';
-import { createMerchFailure, createMerchSuccess, loadMerchsSuccess } from '../../actions/merch/merch.actions';
+import { createMerchFailure, createMerchSuccess, loadMerchsSuccess, selectMerch } from '../../actions/merch/merch.actions';
 
 
 export const merchFeatureKey = 'merch';
@@ -9,12 +9,14 @@ export interface State {
   merches: Merch[];
   errorMsg: Error | null;
   msg: String | null;
+  selectedMerch: Merch | null;
 }
 
 export const initialState: State = {
   merches: [],
   errorMsg: null,
-  msg: null
+  msg: null,
+  selectedMerch: null
 };
 
 
@@ -30,6 +32,9 @@ export const reducer = createReducer(
   }),
   on(loadMerchsSuccess, (state, action) => {
     return {...state, merches: action.data}
+  }),
+  on(selectMerch, (state, action) => {
+    return {...state, selectedMerch: action.data}
   })
 );
 

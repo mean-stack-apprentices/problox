@@ -13,5 +13,9 @@ export const msgSelector = createSelector(
 
 export const errorMsgSelector = createSelector(
     merchFeatureSelector, (state) => state.errorMsg
-)
+);
+
+export const selectedMerchSelector = createSelector(
+    merchFeatureSelector, (state) => state.selectedMerch
+);
 
