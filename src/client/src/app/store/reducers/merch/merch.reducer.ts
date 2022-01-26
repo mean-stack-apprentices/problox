@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Merch } from '../../../../../../shared/models/merch.model';
 import { createMerchFailure, createMerchSuccess, loadMerchsSuccess } from '../../actions/merch/merch.actions';
 
@@ -8,11 +8,13 @@ export const merchFeatureKey = 'merch';
 export interface State {
   merches: Merch[];
   errorMsg: Error | null;
+  msg: String | null;
 }
 
 export const initialState: State = {
   merches: [],
-  errorMsg: null
+  errorMsg: null,
+  msg: null
 };
 
 
@@ -21,10 +23,10 @@ export const reducer = createReducer(
   on(createMerchSuccess, (state,action) => {
     const merches = [...state.merches];
     merches.push(action.data);
-    return {...state, merches}
+    return {...state, merches, msg: "Merch Created Successfully!", errorMsg: null}
   }),
   on(createMerchFailure, (state, action) => {
-    return {...state, errorMsg: action.error}
+    return {...state, errorMsg: action.error, msg: "Merch Creation Failure!!"}
   }),
   on(loadMerchsSuccess, (state, action) => {
     return {...state, merches: action.data}

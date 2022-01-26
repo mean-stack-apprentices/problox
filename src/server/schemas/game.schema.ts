@@ -13,7 +13,7 @@ const gameSchema = new Schema<Game>({
         default: 0.00
     },
     imgUrl: {type: String},
-    categories: {
+    tier: {
         type: String,
         required: true, 
         enum: ["free", "paid"],
