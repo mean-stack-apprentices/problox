@@ -27,13 +27,8 @@ import { FaModule } from './modules/fa/fa.module';
 import { MerchComponent } from './components/merch/merch.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialModule } from './material/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
-
-import {MaterialModule} from './material/material.module';
-
 import { MainNavComponent } from './main-nav/main-nav.component';
 
 
@@ -53,7 +48,6 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     PageGamesComponent,
     NavbarComponent,
     MerchComponent,
-    SidebarComponent,
     MerchDetailsComponent,
     MainNavComponent,
   ],
