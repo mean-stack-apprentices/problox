@@ -3,7 +3,7 @@ import { GameModel } from '../schemas/game.schema.js'
 export const gameRouter = express.Router();
 
 gameRouter.get("/", function(req,res){
-    GameModel.find({}, "-_id")
+    GameModel.find()
     .then(data => {
       res.json({data})
     })
