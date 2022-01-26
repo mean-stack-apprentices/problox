@@ -11,7 +11,7 @@ export class GameService {
   constructor(private api: ApiService) {}
 
     getGames(){
-      return this.api.get<{data: Game[]}>(this.routeString)
+      return this.api.get<{data: Game[]}>(this.routeString).pipe(map((res) => res.data))
     };
 
     addGame(game: Game){
