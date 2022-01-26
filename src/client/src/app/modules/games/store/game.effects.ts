@@ -10,9 +10,9 @@ export class GameEffects {
   loadGames$ = createEffect(() =>
     this.actions$.pipe(
       ofType(gameAction.loadGames),
-      mergeMap(() =>
+      mergeMap((action) =>
         this.gameService.getGames().pipe(
-          map((data) => gameAction.loadGamesSuccess({ data })),
+          map((data) => gameAction.loadGamesSuccess( data )),
           catchError((error) => of(gameAction.loadGamesFailure({ error })))
         )
       )
