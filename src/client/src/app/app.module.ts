@@ -30,6 +30,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
+import { UserGameDetailsComponent } from './modules/games/components/user-game-details/user-game-details.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3000/' : '', options: {} };
 
@@ -48,6 +49,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MerchComponent,
     SidebarComponent,
     MerchDetailsComponent,
+    UserGameDetailsComponent,
 
   ],
   imports: [
