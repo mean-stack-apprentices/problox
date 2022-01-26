@@ -7,24 +7,8 @@ const orderSchema = new Schema({
             ref: 'OrderItem',
             required: true
         }],
-    shippingAddress1: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    zip: {
-        type: String,
-        required: true
-    },
-    country: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
+    shippingAddress: {
+        type: mongoose.Schema.Types.Mixed,
         required: true
     },
     totalPrice: {
