@@ -14,13 +14,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
-
+import { MatCardModule } from '@angular/material/card';
+import { UsersGamesListComponent } from './components/users-games-list/users-games-list.component';
 
 
 
 @NgModule({
   declarations: [
     AddGameComponent,
+    UsersGamesListComponent,
 
   ],
   imports: [
@@ -36,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     MatSelectModule,
     CurrencyMaskModule,
     MatSnackBarModule,
+    MatCardModule,
 
 
   ]

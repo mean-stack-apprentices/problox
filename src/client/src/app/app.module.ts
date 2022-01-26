@@ -48,6 +48,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MerchComponent,
     SidebarComponent,
     MerchDetailsComponent,
+
   ],
   imports: [
     BrowserModule,
