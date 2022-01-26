@@ -32,6 +32,23 @@ button {
 }
 
 button:disabled {
-  background-color: #6b8fc4;
+  background-color: #7394c7;
   color: white;
+}
+
+button:hover:enabled {
+    cursor: pointer;
+}
+
+.msg-div {
+    border: 1px solid green;
+    color: green;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.error-msg-div {
+    border: 1px solid red;
+    color: red;
 }

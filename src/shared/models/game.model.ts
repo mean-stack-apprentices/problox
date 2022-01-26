@@ -4,5 +4,5 @@ export interface Game {
     description: string,
     price: number,
     imgUrl: string,
-    categories: string
+    tier: string
 }

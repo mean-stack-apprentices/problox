@@ -14,6 +14,8 @@ apiRouter.use('/merch', merchRouter);
 apiRouter.use('/admin', adminRouter);
 apiRouter.use('/email', emailRouter);
 // response handler 
+apiRouter.use('/email', emailRouter);
+// resspone handler 
 apiRouter.use((req, res, next) => {
     if (res.locals.data) {
         res.status(200).json({ data: res.locals.data });
