@@ -44,7 +44,7 @@ export class AddGameComponent implements OnInit {
       duration: 2000
     });
     this.addGame.reset();
-    this.router.navigate(['/games'])
+    this.router.navigate(['/games/users-games-list'])
     }else{
       this.snackBar.open('Adding a Game failed. Please try again.', '', {
         duration: 2000
