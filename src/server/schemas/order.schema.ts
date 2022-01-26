@@ -21,4 +21,4 @@ const orderSchema = new Schema<Order>({
     }
 })
 
-exports.Order = mongoose.model('Order', orderSchema)
+export const OrderModel = model('Order', orderSchema);
