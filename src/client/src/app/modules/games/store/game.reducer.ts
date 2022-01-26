@@ -7,7 +7,6 @@ import * as gameAction from './game.actions';
 export const gameFeatureKey = 'game';
 
 export interface State extends EntityState<Game>{
-  games: Game[];
   selectedGame: string | null;
 
 }
@@ -23,7 +22,6 @@ export const adapter: EntityAdapter<Game> = createEntityAdapter<Game>({
 });
 
 export const initialState: State = adapter.getInitialState( {
-  games: [],
   selectedGame: null,
 
 });
@@ -33,6 +31,7 @@ export const reducer = createReducer(
   initialState,
 
   on(gameAction.loadGamesSuccess, (state, action) => {
+    console.log(action)
     return adapter.setAll(action.data, state)
   }),
 

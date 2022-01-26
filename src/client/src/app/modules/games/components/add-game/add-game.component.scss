@@ -1,0 +1,50 @@
+div {
+  display: block;
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+  width: 30%;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 2%;
+  margin-top: 0.5rem;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+textarea {
+  height: 10rem;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: #0968f7;
+  color: white;
+  border-color: transparent;
+}
+
+button:disabled {
+background-color: #6b8fc4;
+color: white;
+}
+
+.select-element {
+  .mat-form-field {
+    width: auto
+  }
+
+  .mat-select-value {
+    max-width: 100%;
+    width: auto;
+  }
+}
+
+h2 {
+  text-align: center;
+  margin-top: 2rem;
+}

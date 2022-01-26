@@ -1,14 +1,12 @@
 
 <div class="main-div">
     <div class="merch-container-div">
-        <div class="merch-details-div" *ngFor="let merch of (merch$ | async)">
+        <div class="merch-details-div" *ngFor="let merch of (merch$ | async)" (click)="navigateToDetails(merch)">
                 <img src="{{merch.imgUrl}}" >
-                <p><b>{{merch.name}}</b></p>
-                <p class="price">$ {{merch.price}}</p>
-                <p>
-                    <b>About this item:</b>
-                     {{merch.description}}
+                <p class="merch-name">
+                    <b>{{merch.name}}</b>
                 </p>
+                <p class="price">$ {{merch.price}}</p>
         </div>
     </div>
 </div>

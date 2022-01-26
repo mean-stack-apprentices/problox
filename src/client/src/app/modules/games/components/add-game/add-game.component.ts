@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { addGame } from 'src/app/modules/games/store/game.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { tierValidation } from '../../validations/add-game.validation';
 
 
 @Component({
@@ -16,28 +18,38 @@ export class AddGameComponent implements OnInit {
   addGame: FormGroup;
   tiers = ['free', 'paid'];
 
-  constructor(private store: Store<AppState>, private router: Router, private fb: FormBuilder) {
+  constructor(private store: Store<AppState>, private router: Router, private fb: FormBuilder, private snackBar: MatSnackBar) {
 
     this.addGame = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-      description: ["", [Validators.required, Validators.maxLength(50)]],
-      price: [0.00, [Validators.required]],
+      name: ["", Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(25)])],
+      description: ["", Validators.compose([Validators.required, Validators.maxLength(50)])],
+      price: [0.00],
       imgUrl: [""],
-      categories: ["free", [Validators.required]]
-    })
+      tier: ["free"]
+    }, {validators:[ tierValidation('price', 'tier')]})
    }
 
-  get categories(){
-    return this.addGame.get('categories')
+  get tier(){
+    return this.addGame.get('tier')
   }
 
   ngOnInit(): void {
   }
 
   postGame(){
+
+    if (this.addGame.valid){
     this.store.dispatch(addGame({data: this.addGame.value}));
+    this.snackBar.open('Game Added Successfully!', '', {
+      duration: 2000
+    });
     this.addGame.reset();
-    this.router.navigate(['/games'])
+    this.router.navigate(['/games/users-games-list'])
+    }else{
+      this.snackBar.open('Adding a Game failed. Please try again.', '', {
+        duration: 2000
+      })
+    }
   }
 
 }

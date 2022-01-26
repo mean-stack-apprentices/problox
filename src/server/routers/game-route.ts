@@ -3,7 +3,7 @@ import { GameModel } from '../schemas/game.schema.js'
 export const gameRouter = express.Router();
 
 gameRouter.get("/", function(req,res){
-    GameModel.find({}, "-_id")
+    GameModel.find()
     .then(data => {
       res.json({data})
     })
@@ -13,14 +13,14 @@ gameRouter.get("/", function(req,res){
   })
   
   gameRouter.post("/create-game", function(req, res){
-    const {name, description, price, imgUrl, categories} = req.body;
+    const {name, description, price, imgUrl, tier} = req.body;
   
     const game = new GameModel({
       name, 
       description, 
       price,
       imgUrl,
-      categories
+      tier
     });
   
     game.save()

@@ -1,0 +1,19 @@
+
+<div *ngIf="(selectedMerch$ | async) as selectedMerch" class="main-div">
+    <div class="merch-div">
+        <div class="flex-child-div">
+            <img src="{{selectedMerch.imgUrl}}">
+        </div>
+        <div class="flex-child-div">
+            <p class="name">{{selectedMerch.name}}</p>
+            <p class="price">${{selectedMerch.price}}</p>
+            <button>Add to cart</button>
+            <br><br>
+            <p class="desc">
+                <b>About this item:</b> 
+                <br>
+                {{selectedMerch.description}}
+            </p>
+        </div>
+    </div>
+</div>

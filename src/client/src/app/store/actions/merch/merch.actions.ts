@@ -29,3 +29,8 @@ export const loadMerchsFailure = createAction(
   '[Merch] Load Merchs Failure',
   props<{ error: Error }>()
 );
+
+export const selectMerch = createAction(
+  '[Merch] Select Merch',
+  props<{data: Merch}>()
+)
