@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GameService } from 'src/app/services/game.service';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/store';
+import { Game } from '../../../../../../../shared/models/game.model';
+import { loadGames } from '../../store/game.actions';
+import { gamesSelector } from '../../store/game.selectors';
 
 @Component({
   selector: 'app-users-games-list',
@@ -9,7 +13,11 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class UsersGamesListComponent implements OnInit {
 
-  constructor(private gamesService: GameService, private store: Store, ) { }
+  games$: Observable<Game[]>
+  constructor( private store: Store<AppState> ) {
+    this.store.dispatch(loadGames())
+    this.games$ = this.store.select(gamesSelector)
+   }
 
   ngOnInit(): void {
   }
