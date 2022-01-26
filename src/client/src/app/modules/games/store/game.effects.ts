@@ -12,7 +12,7 @@ export class GameEffects {
       ofType(gameAction.loadGames),
       mergeMap(() =>
         this.gameService.getGames().pipe(
-          map((data) => gameAction.loadGamesSuccess({ data })),
+          map((data) => gameAction.loadGamesSuccess(data)),
           catchError((error) => of(gameAction.loadGamesFailure({ error })))
         )
       )

@@ -33,7 +33,7 @@ export const reducer = createReducer(
   initialState,
 
   on(gameAction.loadGamesSuccess, (state, action) => {
-    return adapter.setAll(action.data, state)
+    return {...state, games: action.data}
   }),
 
   on(gameAction.addGameSuccess, (state , action) => {
