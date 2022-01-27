@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === true">
-    <mat-toolbar color="secondary"><mat-icon>group_work</mat-icon></mat-toolbar>
+    <mat-toolbar color="primary"><mat-icon>group_work</mat-icon></mat-toolbar>
     <mat-nav-list>
       <!-- <a mat-list-item href="#">Home</a> -->
 
@@ -11,13 +11,19 @@
       
       <!-- <a mat-list-item routerLink="games">Games</a> -->
       <mat-menu #appMenu="matMenu" class="dropdown">
-        <button mat-menu-item routerLink="games" (click)="drawer.toggle()">All Games</button>
-        <button mat-menu-item routerLink="create-game" (click)="drawer.toggle()">Add Game</button>
+        <button mat-menu-item routerLink="games/users-games-list" (click)="drawer.toggle()">All Games</button>
+        <button mat-menu-item routerLink="games/create-game" (click)="drawer.toggle()">Add Game</button>
         <button mat-menu-item routerLink="join-game" (click)="drawer.toggle()">Play Game</button>
       </mat-menu>
       <button mat-button [matMenuTriggerFor]="appMenu">Games<mat-icon>unfold_more</mat-icon></button>
 
-      <a mat-list-item routerLink="create-merch" (click)="drawer.toggle()">Merch</a>
+      <!-- <a mat-list-item routerLink="create-merch" (click)="drawer.toggle()">Merch</a> -->
+
+      <mat-menu #merchMenu="matMenu">
+        <button mat-menu-item routerLink="merch">Buy Merch</button>
+        <button mat-menu-item routerLink="create-merch">Create Merch</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="merchMenu">Merch</button>
 
       <mat-menu #appmenu="matMenu" class="dropdown">
         <button mat-menu-item routerLink="create-message" (click)="drawer.toggle()">Create-Message</button>
@@ -61,19 +67,25 @@
         <div>
         <a mat-button routerLink="home"> <mat-icon>home</mat-icon></a>
 
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item routerLink="games">All Games</button>
-          <button mat-menu-item routerLink="create-game">Add Game</button>
+        <mat-menu #topMenu="matMenu">
+          <button mat-menu-item routerLink="games/users-games-list">All Games</button>
+          <button mat-menu-item routerLink="games/create-game">Add Game</button>
           <button mat-menu-item routerLink="join-game" >Play Game</button>
         </mat-menu>
-        <button mat-button [matMenuTriggerFor]="appMenu" (click)="drawer.toggle()">Games</button>
+        <button mat-button [matMenuTriggerFor]="topMenu">Games</button>
 
-        <a mat-button routerLink="create-merch">Merch</a>
+        <!-- <a mat-button routerLink="create-merch">Merch</a> -->
 
-    <mat-menu #appmenu="matMenu">
+        <mat-menu #merchMenu="matMenu">
+          <button mat-menu-item routerLink="merch">Buy Merch</button>
+          <button mat-menu-item routerLink="create-merch">Create Merch</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="merchMenu">Merch</button>
+
+    <mat-menu #topmenu="matMenu">
       <button mat-menu-item routerLink="create-message">Create-Message</button>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="appmenu" (click)="drawer.toggle()">Chat</button>
+    <button mat-button [matMenuTriggerFor]="topmenu">Chat</button>
 
         <a mat-button routerLink="contact-page">Contact</a>
         <a mat-button routerLink="login">Login</a>
