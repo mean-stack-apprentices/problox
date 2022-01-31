@@ -26,3 +26,19 @@
 .dropdown {
  padding-left: 6px;
 }
+
+.dropDown{
+  background-color: rgba(210, 105, 30, 0.514);
+  // float: right;
+  }
+  
+  @media only screen and (max-device-width: 414px) {
+    .topnav.mat-button {
+      display: none;
+  }
+  
+  // .topnav.mat-raised-button {
+  //   display: none;
+  // }
+  
+  }
