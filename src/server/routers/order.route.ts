@@ -53,3 +53,19 @@ orderRouter.put('/:id', async(req, res) => {
     }
     res.send(order)
 })
+
+orderRouter.delete('/:id', (req, res) => {
+    OrderModel.findByIdAndRemove(req.params.id).then(async order => {
+        if(order) {
+            order.orderItems.map(async orderItem => {
+                await OrderItemModel.findByIdAndRemove(orderItem)
+            })
+            return res.status(200).json({success: true, message: 'the order is deleted'
+            })
+        } else {
+            return res.status(404).json({success: false, message: 'the order cannot be found'})
+        }
+    }).catch(err => {
+        return res.status(500).json({success: false, error: err})
+    })
+})
