@@ -13,7 +13,7 @@ orderRouter.get('/', async(req, res) => {
 })
 
 orderRouter.post("/create", async function(req,res) {
-    const {orderItems, shippingAddress, totalPrice, user} = req.body;
+    const {orderItems, shippingAddress, user} = req.body;
     const items = await OrderItemModel.insertMany(orderItems)
 
     const totalPrices = await Promise.all(items.map(async (orderItemId)=> {
