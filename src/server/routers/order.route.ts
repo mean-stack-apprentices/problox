@@ -39,3 +39,17 @@ orderRouter.post("/create", async function(req,res) {
     .catch(err => res.status(501).json(err))
 });
 
+orderRouter.put('/:id', async(req, res) => {
+    const order = await OrderModel.findByIdAndUpdate(
+        req.params.id,
+        {
+            shippingAddress: req.body.shippingAddress
+        },
+        {new: true}
+    )
+
+    if(!order) {
+        return res.status(400).send('the order cannot be found');
+    }
+    res.send(order)
+})
