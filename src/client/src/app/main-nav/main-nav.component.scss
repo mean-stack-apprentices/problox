@@ -5,7 +5,7 @@
 
 .sidenav {
   width: 200px;
-  background-color: lightblue;
+  background-color: rgb(43, 226, 217);
 }
 
 .sidenav .mat-toolbar {
@@ -19,26 +19,26 @@
   z-index: 1;
 }
 
-.navbar {
+.topnav {
   justify-content: space-between;
 }
 
-.dropdown {
- padding-left: 6px;
-}
+// .topnav.mat-toolbar {
+  // background: inherit;
+//   ;]]\...........]
 
 .dropDown{
-  background-color: rgba(210, 105, 30, 0.514);
-  // float: right;
-  }
-  
-  @media only screen and (max-device-width: 414px) {
-    .topnav.mat-button {
-      display: none;
-  }
-  
-  // .topnav.mat-raised-button {
-  //   display: none;
-  // }
-  
-  }
+background-color: rgba(210, 105, 30, 0.514);
+// float: right;
+}
+
+@media only screen and (max-device-width: 414px) {
+  .topnav.mat-button {
+    display: none;
+}
+
+// .topnav.mat-raised-button {
+//   display: none;
+// }
+
+}
