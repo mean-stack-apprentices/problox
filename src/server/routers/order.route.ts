@@ -69,3 +69,16 @@ orderRouter.delete('/:id', (req, res) => {
         return res.status(500).json({success: false, error: err})
     })
 })
+
+orderRouter.get('/get/userorders/:userid', async (req, res) => {
+    const userOrderList = await OrderModel.find({user: req.params.userid}).populate({
+        path: 'orderItems', populate: {
+            path: 'product'
+        }
+    })
+
+    if(!userOrderList) {
+        res.status(500).json({success: false})
+    }
+    res.send(userOrderList)
+})
