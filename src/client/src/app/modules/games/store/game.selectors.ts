@@ -4,9 +4,14 @@ import * as fromGame from './game.reducer';
 
 const gameFeatureSelector = createFeatureSelector<AppState, fromGame.State>(fromGame.gameFeatureKey)
 
+const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = fromGame.adapter.getSelectors();
+
 export const gamesSelector = createSelector(
   gameFeatureSelector,
-  (state) => state.games
+  selectAll
 );
-
-

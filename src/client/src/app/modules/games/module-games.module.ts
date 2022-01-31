@@ -16,6 +16,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatCardModule } from '@angular/material/card';
 import { UsersGamesListComponent } from './components/users-games-list/users-games-list.component';
+import { UserGameDetailsComponent } from './components/user-game-details/user-game-details.component';
 
 
 
@@ -23,6 +24,7 @@ import { UsersGamesListComponent } from './components/users-games-list/users-gam
   declarations: [
     AddGameComponent,
     UsersGamesListComponent,
+    UserGameDetailsComponent,
 
   ],
   imports: [
