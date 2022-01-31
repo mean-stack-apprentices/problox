@@ -15,10 +15,19 @@ orderRouter.get('/', async(req, res) => {
 orderRouter.post("/create", async function(req,res) {
     const {orderItems, shippingAddress, totalPrice, user} = req.body;
     const items = await OrderItemModel.insertMany(orderItems)
+
+    const totalPrices = await Promise.all(items.map(async (orderItemId)=> {
+        const orderItem = await OrderItemModel.findById(orderItemId).populate('product', 'price')
+        const totalPrice = orderItem.product.price * orderItem.quantity
+        return totalPrice
+    }))
+
+    const grandTotal = totalPrices.reduce((a,b)=> a + b, 0)
+    
     const order = new OrderModel( {
         orderItems: items,
         shippingAddress,
-        totalPrice,
+        totalPrice: grandTotal,
         user
     })
     order
