@@ -1,3 +1,4 @@
+import { Role } from "./role.model.js";
 
 export interface User {
     _id?: string,
@@ -5,5 +6,5 @@ export interface User {
     username: string,
     email: string,
     password?: string,
-    role: 'admin' | 'pro' | 'basic';
+    roles: [Role];
 }
