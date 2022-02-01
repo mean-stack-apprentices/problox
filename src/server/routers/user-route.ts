@@ -1,26 +1,25 @@
 import express from "express";
-import { UserModel } from '../schemas/user.schema.js'
+import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { RoleModel } from "../schemas/role.schema.js";
 import { roleHandler } from "../middleware/role.middleware.js";
 import { authHandler } from "../middleware/auth.middleware.js";
+import { RoleModel } from "../schemas/role.schema.js";
 
-dotenv.config()
+dotenv.config();
 
-export const userRouter = express.Router()
+export const userRouter = express.Router();
 
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET as string;
 
+        const role = await RoleModel.findOne( {name: "ADMIN"})
 userRouter.post("/create-user", function (req:any, res:any) {
     const { name, username, email, password } = req.body;
     const role = req.role
-    console.log("UserRoute",req.role)
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
-        const role = await RoleModel.findOne( {name: "ADMIN"})
         const user = new UserModel({
           name,
           username,
@@ -29,39 +28,28 @@ userRouter.post("/create-user", function (req:any, res:any) {
          roles:[role?._id]
          
         });
-  
-        user
-        .save()
-          .then((data:any) => {
-            res.json({ data });
-          })
-          .catch((err:any) => {
-            res.status(501);
-            res.json({ errors: err });
-          });
-      });
     });
   });
-  
-  
-  userRouter.post("/login", function(req, res) {
-    const {username, password} = req.body;
-  
-    UserModel.findOne({username}).then(user => {
-      bcrypt.compare(password, `${user?.password}`, function(err, result) {
-        if (result) {
-          const accessToken = jwt.sign({user}, access_secret)
-          res.cookie('jwt', accessToken, {
-            httpOnly: true,
-            maxAge: 3600 * 1000,
-          })
-          res.json({data: user});
-        } else {
-          res.sendStatus(502);
-        }
-      })
-    })
+});
+
+userRouter.post("/login", function (req, res) {
+  const { username, password } = req.body;
+
+  UserModel.findOne({ username }).then((user) => {
+    bcrypt.compare(password, `${user?.password}`, function (err, result) {
+      if (result) {
+        const accessToken = jwt.sign({ user }, access_secret);
+        res.cookie("jwt", accessToken, {
+          httpOnly: true,
+          maxAge: 3600 * 1000,
+        });
+        res.json({ data: user });
+      } else {
+        res.sendStatus(502);
+      }
+    });
   });
+});
 
   userRouter.post("/valid-username", async function(req, res){
     const {username} = req.body;
@@ -76,9 +64,17 @@ userRouter.post("/create-user", function (req:any, res:any) {
         const user = await UserModel.findById(req.user._id).populate('roles')
         res.status(200).json({data:user})
     })
-     
 
-  userRouter.get('/', async function(req, res) {
-    const users = await UserModel.find({});
-    res.json({ data: users });
-});
+    userRouter.get("/logout", authHandler, function (req, res) {
+      res.cookie("jwt", "", {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+      });
+      res.json({ message: "Successfully Logged out" });
+    });
+    
+    userRouter.get("/", async function (req, res) {
+      const users = await UserModel.find({});
+      res.json({ data: users });
+    });
+    

@@ -1,5 +1,5 @@
 import  mongoose  from "mongoose"
-import { Order } from "../../shared/models/order.model"
+import { Order } from "../../shared/models/order.model.js"
 const {Schema, model} = mongoose
 
 const orderSchema = new Schema<Order>({
@@ -21,4 +21,4 @@ const orderSchema = new Schema<Order>({
     }
 })
 
-exports.Order = mongoose.model('Order', orderSchema)
+export const OrderModel = model('Order', orderSchema);

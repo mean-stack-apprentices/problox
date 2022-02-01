@@ -5,7 +5,7 @@ import { GameModel } from '../schemas/game.schema.js'
 export const gameRouter = express.Router();
 
 gameRouter.get("/", function(req,res){
-    GameModel.find({}, "-_id")
+    GameModel.find()
     .then(data => {
       res.json({data})
     })
@@ -31,4 +31,17 @@ gameRouter.get("/", function(req,res){
     }).catch(err => {
       res.status(500).json({message: "Something went wrong"})
     })
+  });
+
+
+gameRouter.post("/game-details/:id", function(req, res){
+  const _id = req.params.id;
+
+  GameModel.findOne({_id}).lean()
+  .then(data => {
+    res.json(data)
   })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+});

@@ -1,5 +1,5 @@
-import { orderItems } from "./order-items.model";
-import { User } from "./user.model";
+import { orderItems } from "./order-items.model.js";
+import { User } from "./user.model.js";
 
 interface shippingAddress {
     street: string,
