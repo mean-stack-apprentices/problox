@@ -3,6 +3,9 @@ import { UserModel } from '../schemas/user.schema.js'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { RoleModel } from "../schemas/role.schema.js";
+import { roleHandler } from "../middleware/role.middleware.js";
+import { authHandler } from "../middleware/auth.middleware.js";
 
 dotenv.config()
 
@@ -11,17 +14,20 @@ export const userRouter = express.Router()
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET as string;
 
-userRouter.post("/create-user", function (req, res) {
+userRouter.post("/create-user", function (req:any, res:any) {
     const { name, username, email, password } = req.body;
-  
+    const role = req.role
+    console.log("UserRoute",req.role)
     bcrypt.genSalt(saltRounds, function (err, salt) {
-      bcrypt.hash(password, salt, function (err, hash) {
+      bcrypt.hash(password, salt, async function (err, hash) {
+        const role = await RoleModel.findOne( {name: "ADMIN"})
         const user = new UserModel({
           name,
           username,
           email,
           password: hash,
-          role: 'basic'
+         roles:[role?._id]
+         
         });
   
         user
@@ -66,6 +72,11 @@ userRouter.post("/create-user", function (req, res) {
       res.json({validUsername: true});
     }
   })
+    userRouter.get("/logged-in-user",authHandler,async function(req:any, res){
+        const user = await UserModel.findById(req.user._id).populate('roles')
+        res.status(200).json({data:user})
+    })
+     
 
   userRouter.get('/', async function(req, res) {
     const users = await UserModel.find({});
