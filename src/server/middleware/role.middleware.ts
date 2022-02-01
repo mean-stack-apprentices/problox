@@ -7,10 +7,7 @@ interface RoleRequest extends Request {
   role?: Role;
   user?:User;
 }
-// const intersection = (a:string[], b:string[]) => {
-//     b = new Set(b); // recycling variable
-//     return [...new Set(a)].filter(e => b.has(e));
-//   };
+
 
 function intersection(arr1:string[], arr2:string[]) { 
     return arr1.filter(item1 => arr2.some(item2 => item1 === item2))
