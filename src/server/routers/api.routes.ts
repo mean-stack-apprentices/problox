@@ -3,7 +3,7 @@ import { userRouter } from "./user-route.js";
 import { gameRouter } from "./game-route.js";
 import { chatRouter } from "./chat-route.js";
 import { merchRouter } from "./merch-route.js";
-import { adminRouter } from "./admin.route.js";
+
 import { emailRouter } from "./email-route.js";
 import { orderRouter } from "./order.route.js";
 
@@ -14,7 +14,7 @@ apiRouter.use('/users', userRouter);
 apiRouter.use('/games', gameRouter);
 apiRouter.use('/chat', chatRouter);
 apiRouter.use('/merch', merchRouter);
-apiRouter.use('/admin', adminRouter);
+
 apiRouter.use('/email', emailRouter);
 apiRouter.use('/order', orderRouter)
 
