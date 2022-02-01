@@ -77,7 +77,7 @@ orderRouter.get('/get/userorders/:userid', async (req, res) => {
         }
     })
 
-    if(!userOrderList) {
+    if(userOrderList.length === 0) {
         res.status(500).json({success: false})
     }
     res.send(userOrderList)
