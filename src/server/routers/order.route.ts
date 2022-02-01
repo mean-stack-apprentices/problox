@@ -6,7 +6,7 @@ export const orderRouter = express.Router();
 orderRouter.get('/', async(req, res) => {
     const orderList = await OrderModel.find()
 
-    if(!orderList) {
+    if(orderList.length === 0) {
         res.status(500).json({success: false})
     }
     res.send(orderList)
