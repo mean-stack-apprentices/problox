@@ -37,10 +37,9 @@ gameRouter.post("/game-details/:id", function(req, res){
 
   GameModel.findOne({_id}).lean()
   .then(data => {
-    console.log({data});
     res.json(data)
   })
   .catch(err => {
     res.status(500).json(err)
   })
-})
+});
