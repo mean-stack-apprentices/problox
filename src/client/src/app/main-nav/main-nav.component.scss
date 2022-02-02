@@ -1,13 +1,7 @@
-// .sidenav-container {
-//   height: 100%;
-  
-// }
-
 .sidenav {
   width: 150px;
   background-color: rgb(43, 226, 217);
-  
-}
+  }
 
 div.welcome {
     text-align: center;
@@ -21,45 +15,7 @@ div.welcome {
     color: blue;
 }
 
-// .mat-button {
-//    align-items: flex-start;
-// }
-// .sidenav .mat-toolbar {
-//   // background: inherit;
-//   background: rgb(255, 208, 0);
-// }
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.menu-spacer {
+    flex: 1 1 auto;
+  }
   
-}
-
-// .topnav {
-//   justify-content: space-between;
-// }
-
-// // .topnav.mat-toolbar {
-//   // background: inherit;
-// //   ;]]\...........]
-
-// .dropDown{
-// background-color: rgba(210, 105, 30, 0.514);
-// // float: right;
-// }
-
-// @media only screen and (max-device-width: 414px) {
-//   .topnav.mat-button {
-//     display: none;
-// }
-
-// // .topnav.mat-raised-button {
-// //   display: none;
-// // }
-
-// }
-
-.topnav {
-    justify-content: space-between;
-}
