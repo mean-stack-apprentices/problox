@@ -16,7 +16,7 @@ const access_secret = process.env.ACCESS_SECRET as string;
 
         
 userRouter.post("/create-user", async function (req:any, res:any) {
-    const role = await RoleModel.findOne( {name: "BASIC"})
+    const role = await RoleModel.findOne( {name: "ADMIN"})
     const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
@@ -28,6 +28,7 @@ userRouter.post("/create-user", async function (req:any, res:any) {
          roles:[role?._id]
          
         });
+        user.save().then(()=>res.status(200).json({data:user}))
     });
   });
 });
