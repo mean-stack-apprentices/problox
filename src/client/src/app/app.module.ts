@@ -30,6 +30,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material/material.module';
 import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 
@@ -68,6 +69,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
+    StoreRouterConnectingModule.forRoot(),
    
      
   ],
