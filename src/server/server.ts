@@ -45,7 +45,6 @@ server.listen(PORT, function () {
   // console.log(`starting at localhost http://localhost:${PORT}`);
 });
 
-
 io.on('connection', function(socket){
 
  socket.on('join', function(data) {

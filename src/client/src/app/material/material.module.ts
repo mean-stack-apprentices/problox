@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const material = [
     MatIconModule,
@@ -14,6 +14,7 @@ const material = [
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
+    FlexLayoutModule,
 
 ]
 

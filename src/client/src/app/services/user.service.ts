@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 import { User } from '../../../../shared/models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { User } from '../../../../shared/models/user.model';
 export class UserService {
   selectedUserId = '';
   routeString = 'users/'
-
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService,
+    private router: Router) {}
 
   getUsers() {
     return this.api.get<{ data: User[] }>(this.routeString).pipe(map((res) => res.data));
@@ -42,5 +43,12 @@ export class UserService {
   validUsername(username: string) {
     return this.api.post<{validUsername: boolean}>(`${this.routeString}valid-username`, {username})
   }
+
+  logout() {
+    
+    this.router.navigate(['/home']);
+    return this.api.get('logout')
+          
+        }
 }
 
