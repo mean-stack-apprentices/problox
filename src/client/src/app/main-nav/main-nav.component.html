@@ -1,101 +1,81 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === true">
-    <mat-toolbar><mat-icon>group_work</mat-icon></mat-toolbar>
-    <mat-nav-list>
-      <!-- <a mat-list-item href="#">Home</a> -->
-
-      <a mat-list-item routerLink="home" (click)="drawer.toggle()"> <mat-icon>home</mat-icon></a>
-      
-      <!-- <a mat-list-item routerLink="games">Games</a> -->
-      <mat-menu #gameMenu="matMenu">
-        <button mat-menu-item routerLink="games/users-games-list" (click)="drawer.toggle()">All Games</button>
-        <button mat-menu-item routerLink="games/create-game" (click)="drawer.toggle()">Add Game</button>
-        <button mat-menu-item routerLink="join-game" (click)="drawer.toggle()">Play Game</button>
-      </mat-menu>
-      <button mat-list-item [matMenuTriggerFor]="gameMenu" class="dropDown">Games<mat-icon>unfold_more</mat-icon></button>
-
-      <!-- <a mat-list-item routerLink="create-merch" (click)="drawer.toggle()">Merch</a> -->
-
-      <mat-menu #merchMenu="matMenu">
-        <button mat-menu-item routerLink="merch" (click)="drawer.toggle()">Buy Merch</button>
-        <button mat-menu-item routerLink="create-merch" (click)="drawer.toggle()">Create Merch</button>
-      </mat-menu>
-      <button mat-button [matMenuTriggerFor]="merchMenu">
-        Merch<mat-icon>unfold_more</mat-icon></button>
-
-      <mat-menu #chatMenu="matMenu">
-        <button mat-menu-item routerLink="create-message" (click)="drawer.toggle()">Create-Message</button>
-      </mat-menu>
-      <button mat-list-item [matMenuTriggerFor]="chatMenu" class="dropDown">
-        <mat-icon> chat</mat-icon>
-        <mat-icon>unfold_more</mat-icon>
+<div style="height: 80vh;">
+  <mat-toolbar color="primary" >
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
       </button>
-
-      <a mat-list-item routerLink="contact-page" (click)="drawer.toggle()"><mat-icon> email</mat-icon></a>
-
-      <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item routerLink="login" (click)="drawer.toggle()">Login</button>
-        <button mat-menu-item routerLink="register" (click)="drawer.toggle()">Sign Up</button>
-        <button mat-menu-item routerLink="logout" (click)="drawer.toggle()"><mat-icon>logout</mat-icon></button>
-      </mat-menu>
-      <button mat-list-item [matMenuTriggerFor]="profileMenu"  class="dropDown">
-        <mat-icon>account_circle</mat-icon>
-        <mat-icon>unfold_more</mat-icon>
-      </button>
-        
-        <!-- <a mat-button routerLink="login">Login</a>
-        <a mat-list-item routerLink="register" color="accent">Sign Up</a>
-        <a mat-button><mat-icon>logout</mat-icon></a> -->
-
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="topnav" (sidenavToggle)="drawer.toggle()">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      
-        <div><mat-icon>group_work</mat-icon>Problox</div>
-        <div>
-        <a mat-button routerLink="home" class="topnav"> <mat-icon>home</mat-icon></a>
-
-        <mat-menu #topGameMenu="matMenu">
+      <span>Problox<mat-icon>group_work</mat-icon></span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md >
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <mat-menu #topgameMenu="matMenu">
           <button mat-menu-item routerLink="games/users-games-list">All Games</button>
           <button mat-menu-item routerLink="games/create-game">Add Game</button>
           <button mat-menu-item routerLink="join-game" >Play Game</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="topGameMenu" class="topnav">Games</button>
+          </mat-menu>
+        <a mat-button  [matMenuTriggerFor]="topgameMenu" >Games</a>
 
-        <!-- <a mat-button routerLink="create-merch">Merch</a> -->
-
-        <mat-menu #topMerchMenu="matMenu">
+        <mat-menu #topmerchMenu="matMenu">
           <button mat-menu-item routerLink="merch">Buy Merch</button>
           <button mat-menu-item routerLink="create-merch">Create Merch</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="topMerchMenu" class="topnav">Merch</button>
+          </mat-menu>
+        <a mat-button [matMenuTriggerFor]="topmerchMenu">Merch</a>
 
-    <mat-menu #topChatMenu="matMenu">
-      <button mat-menu-item routerLink="create-message">Create-Message</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="topChatMenu" class="topnav">Chat</button>
+        <mat-menu #topchatMenu="matMenu">
+          <button mat-menu-item routerLink="create-message">Create-Message</button>
+          </mat-menu>
+        <a mat-button [matMenuTriggerFor]="topchatMenu">Chat</a>
 
-        <a mat-button routerLink="contact-page" class="topnav">Contact</a>
-        <a mat-button routerLink="login" class="topnav">Login</a>
-        <a mat-raised-button routerLink="register" color="accent" class="topnav">Sign Up</a>
-        <a mat-button routerLink="logout" class="topnav"><mat-icon>logout</mat-icon></a>
-        
+        <a routerLink="contact-page" mat-button>Contact</a>
+        <a routerLink="login" mat-button>Login</a>
+        <a routerLink="register" mat-raised-button color="accent">Sign Up</a>
+        <a href="#" mat-button><mat-icon>logout</mat-icon></a>
       </div>
-     
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav class="sidenav">
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item><mat-icon>clear</mat-icon></a>
+        <mat-menu #gameMenu="matMenu">
+          <button mat-menu-item routerLink="games/users-games-list" (click)="sidenav.toggle()">All Games</button>
+          <button mat-menu-item routerLink="games/create-game" (click)="sidenav.toggle()">Add Game</button>
+          <button mat-menu-item routerLink="join-game" (click)="sidenav.toggle()">Play Game</button>
+          </mat-menu>
+        <a [matMenuTriggerFor]="gameMenu" mat-list-item>
+          Games<mat-icon>unfold_more</mat-icon></a>
+
+        <mat-menu #merchMenu="matMenu">
+          <button mat-menu-item routerLink="merch" (click)="sidenav.toggle()">Buy Merch</button>
+          <button mat-menu-item routerLink="create-merch" (click)="sidenav.toggle()">Create Merch</button>
+          </mat-menu>
+        <a  [matMenuTriggerFor]="merchMenu" mat-list-item>
+          Merch<mat-icon>unfold_more</mat-icon></a>
+        <a routerLink="create-message" mat-list-item (click)="sidenav.toggle()">
+          <mat-icon> chat</mat-icon>
+        </a>
+        <a routerLink="contact-page" mat-list-item (click)="sidenav.toggle()">
+          <mat-icon> email</mat-icon>
+        </a>
+        <!-- <a href="#" mat-list-item>Sign Up</a>
+        <a href="#" mat-list-item>Login</a>
+        <a href="#"mat-list-item>Logout</a> -->
+        
+        <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item routerLink="login" (click)="sidenav.toggle()">Login</button>
+          <button mat-menu-item routerLink="register" (click)="sidenav.toggle()">Sign Up</button>
+          <button mat-menu-item routerLink="logout" (click)="sidenav.toggle()"><mat-icon>logout</mat-icon></button>
+          </mat-menu>
+        <a [matMenuTriggerFor]="profileMenu" mat-list-item>
+          <mat-icon>account_circle</mat-icon>
+          <mat-icon>unfold_more</mat-icon></a>
+      </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content fxFlexFill>
+      <div class="welcome">Welcome to Problox</div>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
