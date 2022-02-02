@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {AppState} from '../../../store';
 import * as fromGame from './game.reducer';
 
-const gameFeatureSelector = createFeatureSelector<AppState, fromGame.State>(fromGame.gameFeatureKey)
+const gameFeatureSelector = createFeatureSelector<fromGame.State>(fromGame.gameFeatureKey)
 
 const {
   selectIds,

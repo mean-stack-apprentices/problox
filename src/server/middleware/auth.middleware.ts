@@ -1,18 +1,25 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 import { User } from "../../shared/models/user.model.js";
 
-interface AuthRequest extends Request {
+dotenv.config()
+
+export interface AuthRequest extends Request {
   user?: User;
 }
+
+const access_secret = process.env.ACCESS_SECRET as string;
+console.log("accessSecret", access_secret)
 function authHandle(req: AuthRequest, res: Response, next: NextFunction) {
   const cookie = req.cookies["jwt"];
   console.log("auth", cookie);
   jwt.verify(
     cookie,
-    process.env.ACCESS_TOKEN_SECRET as string,
+    access_secret,
     (err: any, result: any) => {
       if (err) {
+        console.log(err)
         return res.sendStatus(403);
       }
       if (result) {
