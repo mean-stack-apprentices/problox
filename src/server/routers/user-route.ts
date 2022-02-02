@@ -14,10 +14,10 @@ export const userRouter = express.Router();
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET as string;
 
-        const role = await RoleModel.findOne( {name: "ADMIN"})
-userRouter.post("/create-user", function (req:any, res:any) {
+        
+userRouter.post("/create-user", async function (req:any, res:any) {
+    const role = await RoleModel.findOne( {name: "BASIC"})
     const { name, username, email, password } = req.body;
-    const role = req.role
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
         const user = new UserModel({
