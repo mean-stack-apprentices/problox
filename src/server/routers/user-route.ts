@@ -16,7 +16,7 @@ const access_secret = process.env.ACCESS_SECRET as string;
 
         
 userRouter.post("/create-user", async function (req:any, res:any) {
-    const role = await RoleModel.findOne( {name: "ADMIN"})
+    const role = await RoleModel.findOne( {name: "BASIC"})
     const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
