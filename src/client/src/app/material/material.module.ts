@@ -6,8 +6,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatCardModule } from '@angular/material/card';
 
-const material = [
+
+export const material = [
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -15,7 +21,11 @@ const material = [
     MatSidenavModule,
     MatMenuModule,
     FlexLayoutModule,
-
+    MatSnackBarModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
 ]
 
 @NgModule ({

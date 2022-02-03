@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
@@ -14,12 +15,16 @@ import { gamesSelector } from '../../store/game.selectors';
 export class UsersGamesListComponent implements OnInit {
 
   games$: Observable<Game[]>
-  constructor( private store: Store<AppState> ) {
+  constructor( private store: Store<AppState>, private router: Router ) {
     this.store.dispatch(loadGames())
     this.games$ = this.store.select(gamesSelector)
    }
 
   ngOnInit(): void {
+  }
+
+  fetchGameDetails(gameId: string){
+    this.router.navigate(['games/game-details/', gameId])
   }
 
 }

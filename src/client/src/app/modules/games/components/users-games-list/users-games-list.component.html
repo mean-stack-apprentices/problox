@@ -5,6 +5,7 @@
     <img mat-card-image src="{{game.imgUrl}}">
   <mat-card-content>
     <p>{{game.description}}</p>
+    <button (click)="fetchGameDetails(game._id)">OPEN</button>
   </mat-card-content>
 </mat-card>
 
