@@ -3,30 +3,24 @@ import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import "../middleware/role.middleware.js";
 import { authHandler } from "../middleware/auth.middleware.js";
+import { RoleModel } from "../schemas/role.schema.js";
 dotenv.config();
 export const userRouter = express.Router();
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET;
-userRouter.post("/create-user", function (req, res) {
+userRouter.post("/create-user", async function (req, res) {
+    const role = await RoleModel.findOne({ name: "BASIC" });
     const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
-        bcrypt.hash(password, salt, function (err, hash) {
+        bcrypt.hash(password, salt, async function (err, hash) {
             const user = new UserModel({
                 name,
                 username,
                 email,
                 password: hash,
-                role: "basic",
-            });
-            user
-                .save()
-                .then((data) => {
-                res.json({ data });
-            })
-                .catch((err) => {
-                res.status(501);
-                res.json({ errors: err });
+                roles: [role?._id]
             });
         });
     });
@@ -59,9 +53,9 @@ userRouter.post("/valid-username", async function (req, res) {
         res.json({ validUsername: true });
     }
 });
-userRouter.get("/", async function (req, res) {
-    const users = await UserModel.find({});
-    res.json({ data: users });
+userRouter.get("/logged-in-user", authHandler, async function (req, res) {
+    const user = await UserModel.findById(req.user._id).populate('roles');
+    res.status(200).json({ data: user });
 });
 userRouter.get("/logout", authHandler, function (req, res) {
     res.cookie("jwt", "", {
@@ -69,5 +63,9 @@ userRouter.get("/logout", authHandler, function (req, res) {
         maxAge: 60 * 60 * 1000,
     });
     res.json({ message: "Successfully Logged out" });
+});
+userRouter.get("/", async function (req, res) {
+    const users = await UserModel.find({});
+    res.json({ data: users });
 });
 //# sourceMappingURL=user-route.js.map
