@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'users-games-list', component: UsersGamesListComponent},
   {path: 'create-game', component: AddGameComponent,
     canActivate: [RolesGuard], data:{roles:["ADMIN"]}},
-  {path: 'game-details', component: UserGameDetailsComponent},
+  {path: 'game-details/:id', component: UserGameDetailsComponent},
 ]
 
 
