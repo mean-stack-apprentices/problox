@@ -22,6 +22,15 @@ userRouter.post("/create-user", async function (req, res) {
                 password: hash,
                 roles: [role?._id]
             });
+            user
+                .save()
+                .then((data) => {
+                res.json({ data });
+            })
+                .catch((err) => {
+                res.status(501);
+                res.json({ errors: err });
+            });
         });
     });
 });
