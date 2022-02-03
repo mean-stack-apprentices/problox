@@ -29,6 +29,7 @@ userRouter.post("/create-user", async function (req:any, res:any) {
          
         });
         user.save().then(()=>res.status(200).json({data:user}))
+    .catch(err => res.status(501).json(err))
     });
   });
 });
