@@ -1,9 +1,11 @@
 import express from "express";
+import { authHandler } from "../middleware/auth.middleware.js";
+import { roleHandler } from "../middleware/role.middleware.js";
 import { MerchModel } from "../schemas/merch.schema.js";
 
 export const merchRouter = express.Router();
 
-merchRouter.post("/create-merch", function(req,res) {
+merchRouter.post("/create-merch",authHandler,roleHandler(['ADMIN']), function(req,res) {
     const {name, price, description, imgUrl} = req.body;
 
     const merch = new MerchModel( {

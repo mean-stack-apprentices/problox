@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { selectedGameSelector } from '../../store/game.selectors'
 
 @Component({
   selector: 'app-user-game-details',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserGameDetailsComponent implements OnInit {
 
-  constructor() { }
+  selectedGame$ = this.store.select(selectedGameSelector)
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
