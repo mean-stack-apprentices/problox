@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     // With NGRX
     this.store.dispatch(loginUser({data: this.signInForm.value}));
     //this.router.navigate(['home'])
+    this.signInForm.reset();
   }
 }
 

@@ -68,11 +68,16 @@ userRouter.post("/login", function (req, res) {
     } else {
       res.json({validUsername: true});
     }
-  })
+  });
+
     userRouter.get("/logged-in-user",authHandler,async function(req:any, res){
         const user = await UserModel.findById(req.user._id).populate('roles')
         res.status(200).json({data:user})
-    })
+    });
+
+    userRouter.get('/api/check-login', authHandler, (req, res) => {
+      res.json({message: 'yes'});
+    });
 
     userRouter.get("/logout", authHandler, function (req, res) {
       res.cookie("jwt", "", {
