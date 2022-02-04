@@ -1,12 +1,10 @@
-<mat-card class="example-card" *ngFor="let game of (games$ | async)">
+<mat-card class="example-card" *ngFor="let game of (games$ | async)" >
   <mat-card-header>
     <mat-card-title class="custom-font">{{game.name}}</mat-card-title>
   </mat-card-header>
     <img mat-card-image src="{{game.imgUrl}}">
   <mat-card-content>
-    <p>{{game.description}}</p>
-    <button (click)="fetchGameDetails(game._id)">OPEN</button>
+    <button routerLink='../game-details/{{game._id}}' routerLinkActive="active">Open</button>
   </mat-card-content>
 </mat-card>
-
 

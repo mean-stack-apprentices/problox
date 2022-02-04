@@ -25,8 +25,5 @@ export const selectedGameEntity = createSelector(
 export const selectedGameSelector = createSelector(
   selectedGameEntity,
   selectRouteParams,
-  (entity, route) => {
-    console.log("SelectedGameSelector", entity[route.id])
-    return entity[route.id]
-  }
+  (entity, route) => entity[route.id]
 );

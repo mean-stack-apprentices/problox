@@ -11,6 +11,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { material } from 'src/app/material/material.module';
 import { UsersGamesListComponent } from './components/users-games-list/users-games-list.component';
 import { UserGameDetailsComponent } from './components/user-game-details/user-game-details.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -30,10 +31,7 @@ import { UserGameDetailsComponent } from './components/user-game-details/user-ga
     StoreModule.forFeature(fromGame.gameFeatureKey, fromGame.reducer),
     CurrencyMaskModule,
     material,
-
-
-
-
+    RouterModule,
   ]
 })
 export class GamesModule { }
