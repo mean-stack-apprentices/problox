@@ -3,7 +3,6 @@ import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { roleHandler } from "../middleware/role.middleware.js";
 import { authHandler } from "../middleware/auth.middleware.js";
 import { RoleModel } from "../schemas/role.schema.js";
 
@@ -27,16 +26,8 @@ userRouter.post("/create-user", async function (req:any, res:any) {
           password: hash,
          roles:[role?._id]
         });
-
-        user
-        .save()
-          .then((data) => {
-            res.json({ data });
-          })
-          .catch((err) => {
-            res.status(501);
-            res.json({ errors: err });
-          });  
+        user.save().then(()=>res.status(200).json({data:user}))
+    .catch(err => res.status(501).json(err))
     });
   });
 });
