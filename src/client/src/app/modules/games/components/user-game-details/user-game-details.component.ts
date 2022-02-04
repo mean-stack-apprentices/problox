@@ -10,15 +10,11 @@ import { selectedGameSelector } from '../../store/game.selectors'
 })
 export class UserGameDetailsComponent implements OnInit {
 
-  gameId: string ="";
-  selectedGame$ = this.store.pipe(select(selectedGameSelector))
+  selectedGame$ = this.store.select(selectedGameSelector)
 
-  constructor(private route: ActivatedRoute, private store: Store) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.gameId = params['gameId']
-    })
   }
 
 }
