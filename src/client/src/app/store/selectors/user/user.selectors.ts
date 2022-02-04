@@ -12,7 +12,15 @@ export const usersSelector = createSelector(
 export const selectedUserSelector = createSelector(
   userFeatureSelector,
   (state) => state.selectedUser
-)
+);
 
+export const loginUserSelector = createSelector(
+ userFeatureSelector,
+ (state) => state.loginUser 
+);
 
+export const loginFailureSelector = createSelector(
+  userFeatureSelector,
+  (state) => state.loginFailMessage
+);
 

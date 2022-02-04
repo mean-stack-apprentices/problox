@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '../../../../../../shared/models/user.model';
-import { createUserSuccess, deleteUserSuccess, loadUsers, loadUsersSuccess, logoutUserSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
+import { createUserSuccess, deleteUserSuccess, loadUsers, loadUsersSuccess, loginUserFailure, loginUserSuccess, logoutUserSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
 
 
 export const userFeatureKey = 'user';
@@ -8,12 +8,16 @@ export const userFeatureKey = 'user';
 export interface State {
   users: User[];
   selectedUser: User | null;
+  loginFailMessage: string;
+  loginUser: User | null;
 
 }
 
 export const initialState: State = {
   users: [],
   selectedUser: null,
+  loginFailMessage:'',
+  loginUser: JSON.parse(localStorage.getItem('Token') || '{}')
 };
 
 
@@ -35,6 +39,15 @@ export const reducer = createReducer(
     const users = [...state.users];
     users.push(action.data);
     return {...state, users}
+  }),
+
+  on(loginUserSuccess, (state, action) => {
+    localStorage.setItem('Token', JSON.stringify(action.data));
+    return {...state, loginUser: action.data, loginFailMessage:''}
+  }),
+
+  on(loginUserFailure, (state, action) => {
+    return {...state, loginFailMessage:action.error.message }
   }),
 
   on(logoutUserSuccess, (state, action) => {

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { User } from '../../../../shared/models/user.model';
+import { AppState } from '../store';
+import { loginUserSelector } from '../store/selectors/user/user.selectors';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,14 +11,14 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MainNavComponent {
 
- 
+ loginUser: User | null = null;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  constructor(
+    private store:Store<AppState>,
+     ) {
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+    this.store.select(loginUserSelector).
+    subscribe(data => this.loginUser = data)
+  }
 
 }

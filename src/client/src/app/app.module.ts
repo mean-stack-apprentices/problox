@@ -20,7 +20,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateMerchComponent } from './components/create-merch/create-merch.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import * as fromMerch from './store/reducers/merch/merch.reducer';
 import { MerchEffects } from './store/effects/merch/merch.effects';
 import { FaModule } from './modules/fa/fa.module';
@@ -47,7 +46,6 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     ChatComponent,
     ContactPageComponent,
     PageGamesComponent,
-    NavbarComponent,
     MerchComponent,
     MerchDetailsComponent,
     MainNavComponent,

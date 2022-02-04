@@ -3,7 +3,6 @@ import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { roleHandler } from "../middleware/role.middleware.js";
 import { authHandler } from "../middleware/auth.middleware.js";
 import { RoleModel } from "../schemas/role.schema.js";
 
@@ -26,7 +25,6 @@ userRouter.post("/create-user", async function (req:any, res:any) {
           email,
           password: hash,
          roles:[role?._id]
-         
         });
         user.save().then(()=>res.status(200).json({data:user}))
     .catch(err => res.status(501).json(err))
@@ -61,11 +59,16 @@ userRouter.post("/login", function (req, res) {
     } else {
       res.json({validUsername: true});
     }
-  })
+  });
+
     userRouter.get("/logged-in-user",authHandler,async function(req:any, res){
         const user = await UserModel.findById(req.user._id).populate('roles')
         res.status(200).json({data:user})
-    })
+    });
+
+    userRouter.get('/api/check-login', authHandler, (req, res) => {
+      res.json({message: 'yes'});
+    });
 
     userRouter.get("/logout", authHandler, function (req, res) {
       res.cookie("jwt", "", {
