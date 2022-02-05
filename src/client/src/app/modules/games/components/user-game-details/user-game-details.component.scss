@@ -1,0 +1,48 @@
+.example-card {
+  max-width: 2rem;
+  max-height: 3rem;
+}
+
+.custom-div-layout {
+  justify-content: center;
+  text-align: center;
+  display: grid;
+}
+
+img {
+  height: 25rem;
+  width: 26rem;
+  margin: 0;
+}
+
+.custom-span-description {
+  justify-content: center;
+}
+
+mat-card-content {
+  text-align: left;
+  max-width: 25rem;
+  word-wrap: break-word;
+}
+
+.div-button-action{
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+mat-card-title {
+  margin-top: 1.2rem;
+
+}
+
+mat-card-header {
+  margin: 0;
+  padding: 0;
+}
+
+::ng-deep .mat-card-header-text {
+  margin: 0 !important;
+}
+
+
+
