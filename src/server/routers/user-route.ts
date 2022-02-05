@@ -3,7 +3,6 @@ import { UserModel } from "../schemas/user.schema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { roleHandler } from "../middleware/role.middleware.js";
 import { authHandler } from "../middleware/auth.middleware.js";
 import { RoleModel } from "../schemas/role.schema.js";
 
@@ -14,9 +13,9 @@ export const userRouter = express.Router();
 const saltRounds = 10;
 const access_secret = process.env.ACCESS_SECRET as string;
 
-        
+
 userRouter.post("/create-user", async function (req:any, res:any) {
-    const role = await RoleModel.findOne( {name: "BASIC"})
+    const role = await RoleModel.findOne( {name: "basic"})
     const { name, username, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
