@@ -70,6 +70,6 @@ export class RegisterComponent implements OnInit {
           updateUser({ data: { ...selectedUser, ...this.addUser.value } })
         );
     this.addUser.reset();
-    // this.router.navigate(['login']);
+    this.router.navigate(['login']);
   }
 }
