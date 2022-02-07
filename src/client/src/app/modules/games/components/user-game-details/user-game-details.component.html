@@ -1,2 +1,29 @@
-<p>user-game-details works!</p>
-{{selectedGame$ | async | json}}
+<div class="custom-div-layout">
+  <mat-card *ngIf="selectedGame$ | async as selectedGame">
+    <mat-card-title-group>
+      <img
+        mat-card-image
+        src="{{ selectedGame.imgUrl }}"
+        alt="{{ selectedGame.name }}"
+        class="image-layout"
+      />
+    </mat-card-title-group>
+    <mat-card-header>
+      <mat-card-title>{{selectedGame.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <span class="custom-span-description">
+        {{ selectedGame.description }}
+      </span>
+    </mat-card-content>
+    <mat-card-actions class=" custom-actions-layout">
+      <mat-chip-list>
+        <mat-chip selectable="false">{{selectedGame.tier}}</mat-chip>
+      </mat-chip-list>
+      <div class="div-button-action">
+        <button routerLink="/games" mat-raised-button color ="primary"> Get </button>
+        <button routerLink="/games/users-games-list" mat-raised-button color ="warn"> Go Back </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

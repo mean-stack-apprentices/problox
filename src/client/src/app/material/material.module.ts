@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 export const material = [
@@ -26,6 +27,8 @@ export const material = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatChipsModule,
+
 ]
 
 @NgModule ({
