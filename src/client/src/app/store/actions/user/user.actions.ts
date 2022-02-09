@@ -90,5 +90,5 @@ export const logoutUserSuccess = createAction(
   );
 
 export const logoutUserFailure = createAction(
-  '[User] Login User Failure',
+  '[User] Logout User Failure',
   );
