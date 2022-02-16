@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .example-card {
@@ -8,7 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .custom-font{
