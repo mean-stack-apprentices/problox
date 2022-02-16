@@ -6,6 +6,8 @@
 
 .example-card {
   display: flex;
+  min-width: 300px;
+  min-height: 200px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
