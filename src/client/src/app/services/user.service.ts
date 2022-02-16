@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 })
 export class UserService {
   selectedUserId = '';
-  routeString = 'users/'
-  constructor(private api: ApiService,
-    private router: Router) {}
+  routeString = 'users/';
+  constructor(private api: ApiService, private router: Router) {}
 
   getUsers() {
-    return this.api.get<{ data: User[] }>(this.routeString).pipe(map((res) => res.data));
+    return this.api
+      .get<{ data: User[] }>(this.routeString)
+      .pipe(map((res) => res.data));
   }
   createUser(user: User) {
     return this.api
@@ -27,7 +28,10 @@ export class UserService {
       .pipe(map((res) => res.data));
   }
   updateUser(user: User) {
-    return this.api.put<User>(`${this.routeString}update-user/` + user._id, user);
+    return this.api.put<User>(
+      `${this.routeString}update-user/` + user._id,
+      user
+    );
   }
 
   deleteUser(user: User) {
@@ -39,16 +43,16 @@ export class UserService {
   selectUser(id: string) {
     this.selectedUserId = id;
   }
- 
+
   validUsername(username: string) {
-    return this.api.post<{validUsername: boolean}>(`${this.routeString}valid-username`, {username})
+    return this.api.post<{ validUsername: boolean }>(
+      `${this.routeString}valid-username`,
+      { username }
+    );
   }
 
   logout() {
-    
-    this.router.navigate(['/home']);
-    return this.api.get('logout')
-          
-        }
+    this.router.navigate(['/login']);
+    return this.api.get(`${this.routeString}logout`);
+  }
 }
-
