@@ -1,7 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .example-card {
-  max-width: 14rem;
-  max-height: 18rem;
-  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .custom-font{
