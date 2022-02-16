@@ -26,11 +26,7 @@ export async function  createUser(roleName: string, user: any) {
           username,
           email,
           password: hash,
-<<<<<<< HEAD
-         roles:[role?._id]
-=======
           roles: [role?._id],
->>>>>>> experiment
         });
         user1
         .save()
@@ -70,7 +66,6 @@ userRouter.post("/login", function (req, res) {
   });
 });
 
-<<<<<<< HEAD
   userRouter.post("/valid-username", async function(req, res){
     const {username} = req.body;
     let user = await UserModel.findOne({username}).lean();
@@ -89,21 +84,6 @@ userRouter.post("/login", function (req, res) {
     userRouter.get('/api/check-login', authHandler, (req, res) => {
       res.json({message: 'yes'});
     });
-=======
-userRouter.post("/valid-username", async function (req, res) {
-  const { username } = req.body;
-  let user = await UserModel.findOne({ username }).lean();
-  if (user) {
-    res.json({ validUsername: false });
-  } else {
-    res.json({ validUsername: true });
-  }
-});
-userRouter.get("/logged-in-user", authHandler, async function (req: any, res) {
-  const user = await UserModel.findById(req.user._id).populate("roles");
-  res.status(200).json({ data: user });
-});
->>>>>>> experiment
 
 userRouter.get("/logout", authHandler, function (req, res) {
   res.cookie("jwt", "", {
