@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../../../../shared/models/user.model';
+import { UserService } from '../services/user.service';
 import { AppState } from '../store';
 import { logoutUser } from '../store/actions/user/user.actions';
 import { loginUserSelector } from '../store/selectors/user/user.selectors';
@@ -16,6 +17,7 @@ export class MainNavComponent {
 
   constructor(
     private store:Store<AppState>,
+    private userService: UserService
      ) {
 
     this.store.select(loginUserSelector).
@@ -27,5 +29,9 @@ export class MainNavComponent {
     
     this.store.dispatch(logoutUser());
     
+  }
+
+  getRoles() {
+    return this.userService.getLoggedInUserRoles()
   }
 }
