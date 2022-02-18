@@ -7,6 +7,7 @@
 .example-card {
   display: flex;
   min-width: 300px;
+  max-width: 300px;
   min-height: 200px;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +15,10 @@
   margin: 10px;
 }
 
-.custom-font{
-  font-size: 30pt;
+.mat-card-title.custom-font {
+ font-size: 35px;
+ text-align: center;
+ display:inline;
 }
 
 button {
