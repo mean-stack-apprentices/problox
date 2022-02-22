@@ -10,8 +10,6 @@ import { apiRouter } from './routers/api.routes.js'
 import { RoleModel } from "./schemas/role.schema.js";
 import { UserModel } from "./schemas/user.schema.js";
 import { createUser } from "./routers/user-route.js";
-import { nextTick } from "process";
-
 
 dotenv.config();
 
