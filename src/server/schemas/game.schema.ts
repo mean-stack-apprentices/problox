@@ -22,6 +22,7 @@ const gameSchema = new Schema<Game>({
         type: String,
         required: true, 
         match: /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/,
+        default: "0.00",
         trim: true,
     },
     imgUrl: {type: String},
