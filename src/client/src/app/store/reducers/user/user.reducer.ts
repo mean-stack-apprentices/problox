@@ -17,7 +17,8 @@ export const initialState: State = {
   users: [],
   selectedUser: null,
   loginFailMessage:'',
-  loginUser: JSON.parse(localStorage.getItem('Token') || '{}')
+  loginUser: null,
+  // loginUser: JSON.parse(localStorage.getItem('Token') || '{}')
 };
 
 
@@ -51,6 +52,7 @@ export const reducer = createReducer(
   }),
 
   on(logoutUserSuccess, (state, action) => {
+    localStorage.removeItem('Token');
     return {...state, loginUser: null}
   }),
   

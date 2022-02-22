@@ -56,7 +56,7 @@ userRouter.post("/login", function (req, res) {
         const accessToken = jwt.sign({ user }, access_secret);
         res.cookie("jwt", accessToken, {
           httpOnly: true,
-          maxAge: 3600 * 1000,
+          maxAge: 60 * 1000,
         });
         res.json({ data: user });
       } else {
@@ -81,19 +81,21 @@ userRouter.post("/login", function (req, res) {
         res.status(200).json({data:user})
     });
 
-    userRouter.get('/api/check-login', authHandler, (req, res) => {
+    userRouter.get('/check-login', authHandler, (req, res) => {
       res.json({message: 'yes'});
     });
 
-userRouter.get("/logout", authHandler, function (req, res) {
-  res.cookie("jwt", "", {
-    httpOnly: true,
-    maxAge: 60 * 60 * 1000,
-  });
-  res.json({ message: "Successfully Logged out" });
-});
 
-userRouter.get("/", async function (req, res) {
-  const users = await UserModel.find({});
-  res.json({ data: users });
-});
+    userRouter.get('/logout', authHandler, function (req, res) {
+      res.cookie("jwt", "", {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+      });
+      res.json({ message: "Successfully Logged out" });
+    });
+    
+    userRouter.get("/", async function (req, res) {
+      const users = await UserModel.find({});
+      res.json({ data: users });
+    });
+    
