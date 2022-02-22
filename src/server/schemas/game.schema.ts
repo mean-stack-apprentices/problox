@@ -4,13 +4,25 @@ const {Schema, model} = mongoose;
 
 
 const gameSchema = new Schema<Game>({
-    name: {type: String, required: true, min: 3, max: 25},
-    description : {type: String, required: true, max: 50},
-    price: {
-        type: Number, 
+    name: {
+        type: String, 
         required: true, 
-        min: 0,
-        default: 0.00
+        minlength: 3, 
+        maxlength: 25,
+        trim: true,
+    },
+
+    description : {
+        type: String, 
+        required: true, 
+        maxlength: 100,
+        trim: true,
+    },
+    price: {
+        type: String,
+        required: true, 
+        match: /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/,
+        trim: true,
     },
     imgUrl: {type: String},
     tier: {
