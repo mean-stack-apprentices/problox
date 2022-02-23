@@ -18,6 +18,7 @@ export class AdminGamesListComponent implements OnInit {
   constructor(private store: Store) {
     this.store.dispatch(loadGames())
     this.games$ = this.store.select(gamesSelector)
+    
   }
 
   ngOnInit(): void {
