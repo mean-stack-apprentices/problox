@@ -35,6 +35,7 @@ import { FaModule } from '../fa/fa.module';
     material,
     RouterModule,
     FaModule,
+    
   ]
 })
 export class GamesModule { }
