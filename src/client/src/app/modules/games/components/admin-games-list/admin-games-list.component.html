@@ -1,0 +1,32 @@
+<div>
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Tier</th>
+      <th>Status</th>
+      <th>Update</th>
+    </tr>
+    <tr *ngFor="let game of games$ | async">
+      <td>
+        <img src="{{game.imgUrl}}" class="imageClass">
+      </td>
+      <td>{{game.name | uppercase}} </td>
+      <td>
+        <span class="custom-span-description">
+          {{game.description}}
+        </span>
+       </td>
+       <td> {{game.price | currency}}</td>
+       <td> {{game.tier | uppercase}} </td>
+       <td>
+         <app-fa-icon class='green' icon='faSolidCheckCircle'></app-fa-icon>
+       </td>
+       <td>
+         <a href="#">Edit</a>
+       </td>
+    </tr>
+  </table>
+</div>

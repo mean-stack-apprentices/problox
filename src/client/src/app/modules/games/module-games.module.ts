@@ -12,6 +12,8 @@ import { material } from 'src/app/material/material.module';
 import { UsersGamesListComponent } from './components/users-games-list/users-games-list.component';
 import { UserGameDetailsComponent } from './components/user-game-details/user-game-details.component';
 import { RouterModule } from '@angular/router';
+import { AdminGamesListComponent } from './components/admin-games-list/admin-games-list.component';
+import { FaModule } from '../fa/fa.module';
 
 
 
@@ -32,6 +34,7 @@ import { RouterModule } from '@angular/router';
     CurrencyMaskModule,
     material,
     RouterModule,
+    FaModule,
   ]
 })
 export class GamesModule { }
