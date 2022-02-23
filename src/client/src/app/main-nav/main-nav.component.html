@@ -31,8 +31,16 @@
         <a routerLink="login" mat-button>Login</a>
         <a routerLink="register" mat-raised-button color="accent">Sign Up</a>
         <button mat-raised-button color="warn" [matMenuTriggerFor]="menuHero" ng-init>Profile</button>
-        <mat-menu #menuHero="matMenu">
-          something
+        <mat-menu #menuHero="matMenu" >
+          <div class="menu-header">
+            <div class="avatar-title-block">
+              <div class="avatar">
+                <span><mat-icon class="icon-display">account_circle</mat-icon>
+                <h2>User Userton</h2></span>
+                <span>Userton@mail.com</span>
+              </div>
+            </div>
+          </div>
         </mat-menu>
         <a (click)="logout()" mat-button><mat-icon>logout</mat-icon></a>
       </div>
