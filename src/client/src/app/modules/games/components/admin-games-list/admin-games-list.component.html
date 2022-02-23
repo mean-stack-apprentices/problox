@@ -11,16 +11,16 @@
     </tr>
     <tr *ngFor="let game of games$ | async">
       <td>
-        <img src="{{game.imgUrl}}" class="imageClass">
+        <img src="{{ game.imgUrl }}" class="imageClass">
       </td>
-      <td>{{game.name | uppercase}} </td>
+      <td>{{ game.name | uppercase }} </td>
       <td>
         <span class="custom-span-description">
           {{game.description}}
         </span>
        </td>
-       <td> {{game.price | currency}}</td>
-       <td> {{game.tier | uppercase}} </td>
+       <td> {{ game.price | currency }}</td>
+       <td> {{ game.tier | uppercase }} </td>
        <td>
          <app-fa-icon class='green' icon='faSolidCheckCircle'></app-fa-icon>
        </td>
