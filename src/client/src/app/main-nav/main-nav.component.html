@@ -30,6 +30,10 @@
         <a routerLink="contact-page" mat-button>Contact</a>
         <a routerLink="login" mat-button>Login</a>
         <a routerLink="register" mat-raised-button color="accent">Sign Up</a>
+        <button mat-raised-button color="warn" [matMenuTriggerFor]="menuHero" ng-init>Profile</button>
+        <mat-menu #menuHero="matMenu">
+          something
+        </mat-menu>
         <a (click)="logout()" mat-button><mat-icon>logout</mat-icon></a>
       </div>
     </mat-toolbar-row>
@@ -62,7 +66,7 @@
         <!-- <a href="#" mat-list-item>Sign Up</a>
         <a href="#" mat-list-item>Login</a>
         <a href="#"mat-list-item>Logout</a> -->
-        
+
         <mat-menu #profileMenu="matMenu">
           <button mat-menu-item routerLink="login" (click)="sidenav.toggle()">Login</button>
           <button mat-menu-item routerLink="register" (click)="sidenav.toggle()">Sign Up</button>
@@ -73,7 +77,7 @@
           <mat-icon>unfold_more</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>
-    
+
     <mat-sidenav-content fxFlexFill>
       <div class="welcome">Welcome to Problox</div>
       <router-outlet></router-outlet>
