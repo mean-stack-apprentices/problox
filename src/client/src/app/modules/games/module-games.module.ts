@@ -22,6 +22,7 @@ import { FaModule } from '../fa/fa.module';
     AddGameComponent,
     UsersGamesListComponent,
     UserGameDetailsComponent,
+    AdminGamesListComponent,
 
   ],
   imports: [
@@ -35,7 +36,7 @@ import { FaModule } from '../fa/fa.module';
     material,
     RouterModule,
     FaModule,
-    
+
   ]
 })
 export class GamesModule { }
