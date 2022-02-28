@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { User } from '../../../../shared/models/user.model';
+import { UserService } from '../services/user.service';
 import { AppState } from '../store';
 import { logoutUser } from '../store/actions/user/user.actions';
 import { loginUserSelector } from '../store/selectors/user/user.selectors';
@@ -12,14 +14,18 @@ import { loginUserSelector } from '../store/selectors/user/user.selectors';
 })
 export class MainNavComponent {
 
- loginUser: User | null = null;
+  loginUser: User | null = null;
+  roles$: Observable<string[]>;
 
   constructor(
     private store:Store<AppState>,
+    private userService: UserService
      ) {
 
     this.store.select(loginUserSelector).
     subscribe(data => this.loginUser = data)
+
+    this.roles$ = this.userService.getLoggedInUserRoles()
   }
 
 
@@ -28,4 +34,5 @@ export class MainNavComponent {
     this.store.dispatch(logoutUser());
     
   }
+
 }
