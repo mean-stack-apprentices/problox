@@ -7,10 +7,12 @@ import { UsersGamesListComponent } from './components/users-games-list/users-gam
 import { UserGameDetailsComponent } from './components/user-game-details/user-game-details.component';
 import { RolesGuard } from 'src/app/guards/roles.guard';
 import { GameDetailsResolver } from './gamedetails.resolver';
+import { AdminGamesListComponent } from './components/admin-games-list/admin-games-list.component';
 
 const routes: Routes = [
   {path: '', component: PageGamesComponent},
   {path: 'users-games-list', component: UsersGamesListComponent},
+  {path: 'admin-games-list', component: AdminGamesListComponent},
   {path: 'create-game', component: AddGameComponent,
     canActivate: [RolesGuard], data:{roles:["ADMIN"]}},
   {path: 'game-details/:id', component: UserGameDetailsComponent,
