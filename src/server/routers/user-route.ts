@@ -77,7 +77,7 @@ userRouter.post("/login", function (req, res) {
   });
 
     userRouter.get("/logged-in-user",authHandler,async function(req:any, res){
-        const user = await UserModel.findById(req.user._id).populate('roles')
+        const user = await UserModel.findById(req.user._id).populate('roles').lean()
         res.status(200).json({data:user})
     });
 
