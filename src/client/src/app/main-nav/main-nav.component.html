@@ -6,7 +6,7 @@
       </button>
       <span>Problox<mat-icon>group_work</mat-icon></span>
       <span class="menu-spacer"></span>
-      <span *ngIf="loginUser" class="username">Hello {{loginUser?.username}}</span>
+      <span *ngIf="loginUser" class="username">Hello {{roles$ | async | json}} {{loginUser?.username}}</span>
       <div fxShow="true" fxHide.lt-md >
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <mat-menu #topgameMenu="matMenu">
