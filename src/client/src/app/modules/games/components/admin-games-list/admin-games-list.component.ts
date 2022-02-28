@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { loadGames } from '../../store/game.actions';
+import { gamesSelector } from '../../store/game.selectors';
+import { Game } from '../../../../../../../shared/models/game.model';
+
 
 @Component({
   selector: 'app-admin-games-list',
@@ -7,7 +13,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminGamesListComponent implements OnInit {
 
-  constructor() { }
+  games$: Observable<Game[]>
+
+  constructor(private store: Store) {
+    this.store.dispatch(loadGames())
+    this.games$ = this.store.select(gamesSelector)
+
+  }
 
   ngOnInit(): void {
   }
