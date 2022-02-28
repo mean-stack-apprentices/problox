@@ -60,7 +60,8 @@ export class UserService {
     return this.api
       .get<{ data: User }>('users/logged-in-user')
       .pipe(map((res) => {
+        console.log(res.data.roles)
        return res.data.roles.map((role:any)=> role.name)
-       }), shareReplay(1));
+       })); 
   }
 }
