@@ -1,3 +1,4 @@
+
 <div style="height: 100vh;">
   <mat-toolbar color="primary" >
     <mat-toolbar-row>
@@ -11,14 +12,14 @@
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <mat-menu #topgameMenu="matMenu">
           <button mat-menu-item routerLink="games/users-games-list">All Games</button>
-          <button mat-menu-item routerLink="games/create-game">Add Game</button>
+          <button *ngIf="role=='ADMIN'" mat-menu-item routerLink="games/create-game">Add Game</button>
           <button mat-menu-item routerLink="join-game" >Play Game</button>
           </mat-menu>
         <a mat-button  [matMenuTriggerFor]="topgameMenu" >Games</a>
 
         <mat-menu #topmerchMenu="matMenu">
           <button mat-menu-item routerLink="merch">Buy Merch</button>
-          <button mat-menu-item routerLink="create-merch">Create Merch</button>
+          <button *ngIf="role=='ADMIN'" mat-menu-item routerLink="create-merch">Create Merch</button>
           </mat-menu>
         <a mat-button [matMenuTriggerFor]="topmerchMenu">Merch</a>
 
@@ -41,7 +42,7 @@
         <a (click)="sidenav.toggle()" href="" mat-list-item><mat-icon>clear</mat-icon></a>
         <mat-menu #gameMenu="matMenu">
           <button mat-menu-item routerLink="games/users-games-list" (click)="sidenav.toggle()">All Games</button>
-          <button mat-menu-item routerLink="games/create-game" (click)="sidenav.toggle()">Add Game</button>
+          <button  *ngIf="role=='ADMIN'" mat-menu-item routerLink="games/create-game" (click)="sidenav.toggle()">Add Game</button>
           <button mat-menu-item routerLink="join-game" (click)="sidenav.toggle()">Play Game</button>
           </mat-menu>
         <a [matMenuTriggerFor]="gameMenu" mat-list-item>
@@ -49,7 +50,7 @@
 
         <mat-menu #merchMenu="matMenu">
           <button mat-menu-item routerLink="merch" (click)="sidenav.toggle()">Buy Merch</button>
-          <button mat-menu-item routerLink="create-merch" (click)="sidenav.toggle()">Create Merch</button>
+          <button  *ngIf="role=='ADMIN'" mat-menu-item routerLink="create-merch" (click)="sidenav.toggle()">Create Merch</button>
           </mat-menu>
         <a  [matMenuTriggerFor]="merchMenu" mat-list-item>
           Merch<mat-icon>unfold_more</mat-icon></a>
@@ -62,7 +63,7 @@
         <!-- <a href="#" mat-list-item>Sign Up</a>
         <a href="#" mat-list-item>Login</a>
         <a href="#"mat-list-item>Logout</a> -->
-        
+
         <mat-menu #profileMenu="matMenu">
           <button mat-menu-item routerLink="login" (click)="sidenav.toggle()">Login</button>
           <button mat-menu-item routerLink="register" (click)="sidenav.toggle()">Sign Up</button>
@@ -73,7 +74,7 @@
           <mat-icon>unfold_more</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>
-    
+
     <mat-sidenav-content fxFlexFill>
       <div class="welcome">Welcome to Problox</div>
       <router-outlet></router-outlet>
