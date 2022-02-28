@@ -31,6 +31,7 @@ import { MerchDetailsComponent } from './components/merch-details/merch-details.
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouteEffects } from './store/effects/route/route.effects';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -50,6 +51,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MerchComponent,
     MerchDetailsComponent,
     MainNavComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -69,8 +71,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MaterialModule,
     LayoutModule,
     StoreRouterConnectingModule.forRoot(),
-   
-     
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
