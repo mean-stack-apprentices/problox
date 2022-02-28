@@ -36,14 +36,15 @@ gameRouter.post("/create-game",authHandler,roleHandler(['ADMIN']), function(req,
 gameRouter.put("/update-game/:id", function(req,res){
   const gameId = req.params.id;
   const {name, description, price, imgUrl, tier} = req.body;
-
+ 
   GameModel.findByIdAndUpdate(
     gameId,
     {
       $set: {name: name, description: description, price: price, imgUrl: imgUrl, tier: tier}
     },
     {
-      new: true
+      new: true,
+      runValidators: true,
     },
   ).then(data => res.json({data}))
   .catch(err => res.status(501).json(err))
