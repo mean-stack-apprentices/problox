@@ -30,6 +30,7 @@ import { MaterialModule } from './material/material.module';
 import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouteEffects } from './store/effects/route/route.effects';
 
 
 
@@ -61,7 +62,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forRoot([UserEffects]),
     SocketIoModule.forRoot(config),
-    EffectsModule.forRoot([UserEffects, MerchEffects]),
+    EffectsModule.forRoot([UserEffects, MerchEffects, RouteEffects]),
     StoreModule.forFeature(fromMerch.merchFeatureKey, fromMerch.reducer),
     FaModule,
     BrowserAnimationsModule,
