@@ -1,1 +1,4 @@
-<p>user-profile works!</p>
+<h1 *ngIf="loginUser" class="userInfo">Name:    {{loginUser?.name}}</h1>
+<h1 *ngIf="loginUser" class="userInfo">Username:    {{loginUser?.username}}</h1>
+<h1 *ngIf="loginUser" class="userInfo">Email:    {{loginUser?.email}}</h1>
+
