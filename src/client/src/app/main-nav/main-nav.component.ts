@@ -14,8 +14,9 @@ import { loginUserSelector } from '../store/selectors/user/user.selectors';
 })
 export class MainNavComponent {
 
-  loginUser: User | null = null;
-  roles$: Observable<string[]>;
+  loginUser$: Observable<User | null> ;
+  roles$: Observable<string[] | null>;
+
 
 
   constructor(
@@ -23,8 +24,7 @@ export class MainNavComponent {
     private userService: UserService
      ) {
 
-    this.store.select(loginUserSelector).
-    subscribe(data => this.loginUser = data)
+   this.loginUser$ = this.store.select(loginUserSelector)
 
     this.roles$ = this.userService.getLoggedInUserRoles()
   }
@@ -36,14 +36,6 @@ export class MainNavComponent {
 
   }
 
-   getRoles(){
-     return this.userService.getLoggedInUserRoles().subscribe(data=>{
-      this.roles = data
-       this.role=this.roles[0]
-
-     } );
-
-   }
 
 
 
