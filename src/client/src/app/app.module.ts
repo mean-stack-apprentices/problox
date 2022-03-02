@@ -32,6 +32,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouteEffects } from './store/effects/route/route.effects';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MainNavPresentationComponent } from './components/main-nav-presentation/main-nav-presentation.component';
 
 
 
@@ -51,7 +52,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     MerchComponent,
     MerchDetailsComponent,
     MainNavComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MainNavPresentationComponent,
   ],
   imports: [
     BrowserModule,
