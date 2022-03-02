@@ -14,6 +14,10 @@ console.log("accessSecret", access_secret)
 function authHandle(req: AuthRequest, res: Response, next: NextFunction) {
   const cookie = req.cookies["jwt"];
   console.log("auth", cookie);
+  if(!cookie){
+    return res.sendStatus(403);
+
+  }
   jwt.verify(
     cookie,
     access_secret,

@@ -4,6 +4,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { User } from '../../../../shared/models/user.model';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -56,12 +57,13 @@ export class UserService {
     return this.api.get(`${this.routeString}logout`);
   }
 
-  getLoggedInUserRoles() {
+  getLoggedInUserRoles(){
     return this.api
-      .get<{ data: User }>('users/logged-in-user')
-      .pipe(map((res) => {
-        console.log(res.data.roles)
-       return res.data.roles.map((role:any)=> role.name)
-       })); 
+      .get<{data: User}>('users/logged-in-user')
+      .pipe(map((res)=>{
+        return res.data.roles.map((role:any)=> role.name)
+      }));
+
   }
 }
+
