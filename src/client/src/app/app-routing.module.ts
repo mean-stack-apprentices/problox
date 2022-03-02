@@ -9,10 +9,12 @@ import { CreateMerchComponent } from './components/create-merch/create-merch.com
 import { MerchComponent } from './components/merch/merch.component';
 import { MerchDetailsComponent } from './components/merch-details/merch-details.component';
 import { RolesGuard } from './guards/roles.guard';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'logged-in-user', component: UserProfileComponent},
   {path: 'join-game', component: PageJoinGameComponent},
   {path: 'create-message', component:ChatComponent},
   {path:'contact-page', component:ContactPageComponent},

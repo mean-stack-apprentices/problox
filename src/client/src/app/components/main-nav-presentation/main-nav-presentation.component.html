@@ -82,7 +82,7 @@
               </div>
             </div>
             <mat-divider></mat-divider>
-            <button mat-menu-item>
+            <button routerLink="logged-in-user" mat-menu-item>
               <mat-icon>dashboard</mat-icon>
               User Profile
             </button>
@@ -154,7 +154,7 @@
           >
             Create Merch
           </button>
-      
+
         </mat-menu>
         <a [matMenuTriggerFor]="merchMenu" mat-list-item>
           Merch<mat-icon>unfold_more</mat-icon></a
