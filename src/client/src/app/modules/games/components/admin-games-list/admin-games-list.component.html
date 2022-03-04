@@ -1,32 +1,51 @@
-<div>
-  <table>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Tier</th>
-      <th>Status</th>
-      <th>Update</th>
-    </tr>
-    <tr *ngFor="let game of games$ | async">
-      <td>
-        <img src="{{ game.imgUrl }}" class="imageClass">
-      </td>
-      <td>{{ game.name | uppercase }} </td>
-      <td>
-        <span class="custom-span-description">
-          {{game.description}}
+<mat-table [dataSource]="games$"  class="table-container mat-elevation-z8">
+  <ng-container matColumnDef="imgUrl">
+    <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+    <mat-cell *matCellDef="let game">
+     <img src="{{game.imgUrl}}" class="imageClass" alt="">
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let game">{{game.name | uppercase}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+    <mat-cell *matCellDef="let game">{{game.description}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+    <mat-cell *matCellDef="let game">{{game.price | currency}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tier">
+    <mat-header-cell *matHeaderCellDef>Tier</mat-header-cell>
+    <mat-cell *matCellDef="let game">{{game.tier | uppercase}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let game">
+      <app-fa-icon class='green' icon='faSolidCheckCircle'></app-fa-icon>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <mat-header-cell *matHeaderCellDef>Update</mat-header-cell>
+    <mat-cell *matCellDef="let game">
+        <span>
+          <a href="#" class="custom-anchor">Edit</a>
         </span>
-       </td>
-       <td> {{ game.price | currency }}</td>
-       <td> {{ game.tier | uppercase }} </td>
-       <td>
-         <app-fa-icon class='green' icon='faSolidCheckCircle'></app-fa-icon>
-       </td>
-       <td>
-         <a href="#">Edit</a>
-       </td>
-    </tr>
-  </table>
-</div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsDisplay; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsDisplay;"></mat-row>
+
+ </mat-table>
+
+
+
