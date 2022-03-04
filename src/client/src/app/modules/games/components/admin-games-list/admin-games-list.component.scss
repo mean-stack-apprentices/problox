@@ -3,11 +3,39 @@
   width: 7rem;
 }
 
-.custom-span-description {
-  justify-content: center;
-  word-wrap: break-word;
-  width: 10px;
-  
+mat-cell {
+  justify-content: left;
+  word-wrap:break-word;
+  width: 5px
 }
+
+table {
+  width: 100%;
+}
+
+.table-container {
+  height: 70vh;
+  overflow: auto;
+}
+
+mat-header-cell {
+  background-color: lightyellow;
+  font-size: 1rem;
+  color: midnightblue;
+}
+
+.custom-anchor{
+  text-decoration: none;
+  font-size: 1rem;
+  color: #3F51B5;
+  font-weight: bold;
+}
+
+a:hover {
+  color: green;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 
 
