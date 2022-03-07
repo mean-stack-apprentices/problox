@@ -14,11 +14,13 @@ import { Game } from '../../../../../../../shared/models/game.model';
 export class AdminGamesListComponent implements OnInit {
 
   games$: Observable<Game[]>
+  columnsDisplay = [
+    "imgUrl", "name","description", "price", "tier", "status", "update"
+  ]
 
   constructor(private store: Store) {
     this.store.dispatch(loadGames())
     this.games$ = this.store.select(gamesSelector)
-
   }
 
   ngOnInit(): void {
