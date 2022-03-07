@@ -14,6 +14,7 @@ import { UserGameDetailsComponent } from './components/user-game-details/user-ga
 import { RouterModule } from '@angular/router';
 import { AdminGamesListComponent } from './components/admin-games-list/admin-games-list.component';
 import { FaModule } from '../fa/fa.module';
+import { EditGameComponent } from './components/edit-game/edit-game.component';
 
 
 
@@ -23,6 +24,7 @@ import { FaModule } from '../fa/fa.module';
     UsersGamesListComponent,
     UserGameDetailsComponent,
     AdminGamesListComponent,
+    EditGameComponent,
 
   ],
   imports: [
