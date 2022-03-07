@@ -56,7 +56,7 @@ userRouter.post("/login", function (req, res) {
         const accessToken = jwt.sign({ user }, access_secret);
         res.cookie("jwt", accessToken, {
           httpOnly: true,
-          maxAge: 60 * 1000,
+          maxAge: 60 * 60 * 1000,
         });
         res.json({ data: user });
       } else {

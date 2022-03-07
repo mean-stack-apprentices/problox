@@ -19,10 +19,10 @@ const gameSchema = new Schema<Game>({
         trim: true,
     },
     price: {
-        type: String,
+        type: Number,
         required: true, 
-        match: /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/,
-        default: "0.00",
+        match: /(?=.*?\d)^\$?(([1-9]\d{0,2}(\d{3})*)|\d+)?(\.\d{1,2})?$/,
+        default: 0,
         trim: true,
     },
     imgUrl: {type: String},
@@ -31,7 +31,12 @@ const gameSchema = new Schema<Game>({
         required: true, 
         enum: ["free", "paid"],
         default: "free"
+    },
+    status: {
+        type: Boolean,
+        required: true,
+        default: true,
     }
 });
 
-export const GameModel = model('Game', gameSchema);
+export const GameModel = model<Game>('Game', gameSchema);
