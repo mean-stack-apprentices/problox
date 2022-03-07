@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { loadGames } from '../../store/game.actions';
 import { gamesSelector } from '../../store/game.selectors';
 import { Game } from '../../../../../../../shared/models/game.model';
+import { MatDialog } from '@angular/material/dialog';
+import { EditGameComponent } from '../edit-game/edit-game.component';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class AdminGamesListComponent implements OnInit {
     "imgUrl", "name","description", "price", "tier", "status", "update"
   ]
 
-  constructor(private store: Store) {
+  constructor(private store: Store, public matDialog: MatDialog) {
     this.store.dispatch(loadGames())
     this.games$ = this.store.select(gamesSelector)
   }
@@ -26,4 +28,14 @@ export class AdminGamesListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openDialog(): void{
+      let dialogbox = this.matDialog.open(EditGameComponent, {
+      width: "50rem",
+      height: "45rem",
+    })
+
+    dialogbox.afterClosed().subscribe(c => {
+      console.log('The dialog was closed')
+    })
+  }
 }

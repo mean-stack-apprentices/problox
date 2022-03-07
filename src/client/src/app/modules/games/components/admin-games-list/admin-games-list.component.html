@@ -37,7 +37,7 @@
     <mat-header-cell *matHeaderCellDef>Update</mat-header-cell>
     <mat-cell *matCellDef="let game">
         <span>
-          <a href="#" class="custom-anchor">Edit</a>
+          <button mat-button (click)="openDialog()">Edit</button>
         </span>
     </mat-cell>
   </ng-container>

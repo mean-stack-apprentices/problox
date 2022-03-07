@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table'
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 export const material = [
@@ -30,6 +31,8 @@ export const material = [
     MatSelectModule,
     MatChipsModule,
     MatTableModule,
+    MatDialogModule,
+
 
 ]
 
