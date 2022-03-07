@@ -2,7 +2,8 @@ export interface Game {
     _id: string,
     name: string,
     description: string,
-    price: string,
+    price: number,
     imgUrl: string,
-    tier: string
+    tier: string, 
+    status: boolean,
 }

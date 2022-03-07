@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table'
 
 
 export const material = [
@@ -28,6 +29,7 @@ export const material = [
     MatFormFieldModule,
     MatSelectModule,
     MatChipsModule,
+    MatTableModule,
 
 ]
 
