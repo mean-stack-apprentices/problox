@@ -31,7 +31,7 @@ export class AdminGamesListComponent implements OnInit {
   openDialog(): void{
       let dialogbox = this.matDialog.open(EditGameComponent, {
       width: "50rem",
-      height: "50rem",
+      height: "45rem",
     })
 
     dialogbox.afterClosed().subscribe(c => {
