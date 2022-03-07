@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { GameEffects } from 'src/app/modules/games/store/game.effects';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { material } from 'src/app/material/material.module';
+import { material } from 'src/app/modules/material/material.module';
 import { UsersGamesListComponent } from './components/users-games-list/users-games-list.component';
 import { UserGameDetailsComponent } from './components/user-game-details/user-game-details.component';
 import { RouterModule } from '@angular/router';
