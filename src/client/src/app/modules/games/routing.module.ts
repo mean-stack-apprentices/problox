@@ -8,6 +8,7 @@ import { UserGameDetailsComponent } from './components/user-game-details/user-ga
 import { RolesGuard } from 'src/app/guards/roles.guard';
 import { GameDetailsResolver } from './gamedetails.resolver';
 import { AdminGamesListComponent } from './components/admin-games-list/admin-games-list.component';
+import { EditGameComponent } from './components/edit-game/edit-game.component';
 
 const routes: Routes = [
   {path: '', component: PageGamesComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
     canActivate: [RolesGuard], data:{roles:["ADMIN"]}},
   {path: 'game-details/:id', component: UserGameDetailsComponent,
     resolve: {GameDetailsResolver}},
-
+  {path: 'edit', component: EditGameComponent},
+  
 ]
 
 @NgModule({
