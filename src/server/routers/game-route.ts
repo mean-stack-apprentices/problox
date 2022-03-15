@@ -19,7 +19,7 @@ gameRouter.post("/create-game",authHandler,roleHandler(['ADMIN']), async functio
     const {name, description, price, imgUrl, tier} = req.body;
 
     let t;
-    await TierModel.findOne({name: tier.toUpperCase()}).lean().then(d => {console.log(d); return d}).then(data => t = data.name).catch(e => console.log("createGame aint find a tier", e))
+    await TierModel.findOne({name: tier.toUpperCase()}).lean().then(data => t = data.name).catch(e => console.log("createGame aint find a tier", e))
   
     const game = new GameModel({
       name, 
