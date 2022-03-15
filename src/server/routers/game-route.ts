@@ -2,6 +2,7 @@ import express from "express";
 import { authHandler } from "../middleware/auth.middleware.js";
 import { roleHandler } from "../middleware/role.middleware.js";
 import { GameModel } from '../schemas/game.schema.js'
+import { TierModel } from "../schemas/tier.schema.js";
 export const gameRouter = express.Router();
 
 gameRouter.get("/", function(req,res){
@@ -14,15 +15,18 @@ gameRouter.get("/", function(req,res){
     })
 })
   
-gameRouter.post("/create-game",authHandler,roleHandler(['ADMIN']), function(req, res){
+gameRouter.post("/create-game",authHandler,roleHandler(['ADMIN']), async function(req, res){
     const {name, description, price, imgUrl, tier} = req.body;
+
+    let t;
+    await TierModel.findOne({name: tier.toUpperCase()}).lean().then(data => t = data.name).catch(e => console.log("createGame aint find a tier", e))
   
     const game = new GameModel({
       name, 
       description, 
       price,
       imgUrl,
-      tier
+      tier: t,
     });
   
     game.save()
