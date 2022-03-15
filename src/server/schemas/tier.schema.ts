@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Tier } from '../../shared/models/tier.model';
+import { Tier } from '../../shared/models/tier.model.js';
 
 const {Schema, model }  = mongoose;
 

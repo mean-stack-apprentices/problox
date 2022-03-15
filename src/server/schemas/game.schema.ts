@@ -28,9 +28,8 @@ const gameSchema = new Schema<Game>({
     imgUrl: {type: String},
     tier: {
         type: String,
-        required: true, 
-        enum: ["free", "paid"],
-        default: "free"
+        required: true,
+        ref: "Tier",
     },
     status: {
         type: Boolean,
